@@ -18,4 +18,5 @@ products=['Vienna sausage', 'Bratwurst ', 'Salami', 'Hotdogs', 'Black bread', 'B
 products.size.times do |count|
       Product.create(name: products[count], price: products[count].length,
                               description: "This is #{products[count]}.", category_id: count/4)
+  #randomtext
 end
