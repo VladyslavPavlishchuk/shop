@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :category
 
-  validates :name, presence: true, length: { maximum: 120 }
-  validates :price, presence: true, if: Proc.new{ |p| p.price > 0 && p.price < 1000000 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 120 }
+  validates :price, presence: true, numericality: {greater_than: 0, less_than: 1_000_000}
 end
