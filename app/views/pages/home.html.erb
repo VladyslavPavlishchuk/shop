@@ -1,0 +1,12 @@
+<h1>Home</h1>
+
+<% if current_user && current_user[:role]=="admin" %>
+  <%= link_to 'Edit users', "/admin/users"%>
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+
+<% elsif current_user %>
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'Sign up', new_user_registration_path %>
+  <%= link_to 'Sign_in', new_user_session_path  %>
+<% end %>

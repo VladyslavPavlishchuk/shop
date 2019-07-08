@@ -1,0 +1,26 @@
+<%if user_signed_in? && current_user['role'] === 'admin'%>
+  <% @users.each do |user| %>
+    <%= form_with url:'/admin/users', data_remote: false do |form| %>
+      <%= form.hidden_field :id, value: user.id%>
+      <%= form.text_field :name, value: user.name%>
+      <%= form.text_field :email, value: user.email %>
+
+      <% if user.role === 'user' %>
+        <%= radio_button_tag(:role, "admin") %>
+        <%= label_tag(:role, "admin") %>
+        <%= radio_button_tag(:role, "user",true) %>
+        <%= label_tag(:role, "user") %>
+      <% else %>
+        <%= radio_button_tag(:role, "admin",true) %>
+        <%= label_tag(:role, "admin") %>
+        <%= radio_button_tag(:role, "user") %>
+        <%= label_tag(:role, "user") %>
+      <% end %>
+
+      <%= form.submit "Save" %>
+    <% end %>
+    <br>
+  <% end %>
+<% else %>
+  <% raise ActionController::RoutingError.new('Not Found') %>
+<% end %>
