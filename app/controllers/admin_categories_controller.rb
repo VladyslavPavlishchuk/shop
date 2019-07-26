@@ -1,11 +1,12 @@
 class AdminCategoriesController < ApplicationController
   def show
+    @categories = Category.all
   end
 
   def create
   end
 
-  def delete
+  def destroy
   end
 
   def change
