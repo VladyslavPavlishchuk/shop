@@ -1,0 +1,44 @@
+<%if user_signed_in? && current_user['role'] === 'admin'%>
+    <div class = "redact_background">
+      <%= form_with url: 'admin/products' do |form|%>
+          <table class="table">
+            <tr class="table_header">
+              <th class="left_header_row"><%= form.label 'Id' %></th>
+              <th><%= form.label 'Name' %></th>
+              <th><%= form.label 'Price' %></th>
+              <th><%= form.label 'Description' %></th>
+              <th><%= form.label 'Category Id' %></th>
+              <th class="right_header_row"></th>
+            </tr>
+            <% @products.each do |product| %>
+                <tr class="row">
+                  <td class="category_field"><%= form.label :id, product.id%></td>
+                  <td class="category_field"><%= form.label :name, product.name%></td>
+                  <td class="category_field"><%= form.label :price, product.price%></td>
+                  <td class="category_field"><%= form.label :description, product.description%></td>
+                  <td class="category_field"><%= form.label :category_id, product.category_id%></td>
+                  <td class="category_field"><%= form.submit "Edit", class: 'purple_btn edit_btn' %>
+                    <%= form.submit "Delete", class: 'purple_btn', remote: true, method: :delete %></td>
+                </tr>
+            <% end %>
+          </table>
+          <br>
+          <%= form.submit "Add new", class: 'big_purple_btn' %>
+      <% end %>
+      <%=form_with url: 'admin/products' do |form|%>
+          <div class='edit_form'>
+              <%= form.hidden_field :id %>
+              <%= form.text_field :name, placeholder: 'Name', class: "medium_field"%>
+              <%= form.text_field :price, placeholder: 'Price', class: "small_field"%>
+              <%= form.select :category_id, Category.all.map{ |category| category.id },{},{required: 'true', class: 'small_field'}%>
+              <%= form.text_area :description, placeholder: 'Description', class:"big_field"%>
+            <div class='error_field'>
+
+            </div>
+              <%= form.submit "Save", class: 'purple_btn' %>
+          </div>
+      <% end %>
+    </div>
+<% else %>
+    <% raise ActionController::RoutingError.new('Not Found') %>
+<% end %>

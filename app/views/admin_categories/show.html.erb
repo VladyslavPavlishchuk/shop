@@ -1,0 +1,35 @@
+<%if user_signed_in? && current_user['role'] === 'admin'%>
+    <div class="redact_background">
+      <%= form_with url: 'admin/categories' do |form|%>
+          <table class="table">
+            <tr class="table_header">
+              <th class="left_header_row"><%= form.label 'Id' %></th>
+              <th><%= form.label 'Name' %></th>
+              <th><%= form.label 'Priority' %></th>
+              <th class="right_header_row"></th>
+            </tr>
+          <% @categories.each do |category| %>
+                <tr class="row">
+                  <td class="category_field"><%= form.label :show_id, category.id%></td>
+                  <td class="category_field"><%= form.label :show_name, category.name%></td>
+                  <td class="category_field"><%= form.label :show_priority, category.priority%></td>
+                  <td class="category_field"><%= form.submit "Edit", class: 'purple_btn edit_btn' %>
+                      <%= form.submit "Delete", class: 'purple_btn' %></td>
+                </tr>
+          <% end %>
+          </table>
+          <br>
+          <%= form.submit "Add new", class: 'big_purple_btn' %>
+      <% end %>
+      <%=form_with url: 'admin/categories' do |form|%>
+          <div class='edit_form'>
+            <%= form.hidden_field :id %>
+            <%= form.text_field :name, placeholder: 'Category name', class: "medium_field"%>
+            <%= form.text_field :priority, placeholder: 'Priority', class: "small_field"%>
+            <%= form.submit "Save", class: 'purple_btn' %>
+          </div>
+      <% end %>
+    </div>
+<% else %>
+    <% raise ActionController::RoutingError.new('Not Found') %>
+<% end %>
