@@ -27,7 +27,6 @@ $(document).on('turbolinks:load', ->
 
   #Hide edit form and show new btn
   $("input[value='Save']").on('click', (event) ->
-    $(".edit_form").hide("slow", -> $('.big_purple_btn').show("slow"));
     if $('form[action="admin/categories"]').length
       add_row(4, ".table");
     event.preventDefault();

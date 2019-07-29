@@ -226,6 +226,17 @@ a{
     margin: 0.2em;
 }
 
+.error_field{
+    background-color: #fc0100;
+    width: 100%;
+    text-align: center;
+}
+
+.error_field > p{
+    margin: 0em;
+    padding: 0em;
+}
+
 .big_field{
     width: 100%;
     margin: 0.2em;
@@ -240,4 +251,3 @@ body{
     justify-content: center;
 }
 
-.edit_btn{}
