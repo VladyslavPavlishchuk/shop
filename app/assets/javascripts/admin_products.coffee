@@ -31,7 +31,8 @@ $(document).on('turbolinks:load', ->
       success: (response) ->
         resp = JSON.parse(response)
         for i in [0..response.length-1]
-          $('.table').find("tr").last().find("td").eq(i).append("<lable '"+Object.keys(resp)[i]+"'>"+Object.values(resp)[i]+"</lable>")
+#        replace with single css selector '.table tr:last '
+        $('.table').find("tr").last().find("td").eq(i).append("<lable '"+Object.keys(resp)[i]+"'>"+Object.values(resp)[i]+"</lable>")
         edit_btn_field('.table').empty()
         edit_btn_field('.table').append("<input type=\"submit\" name=\"commit\" value=\"Edit\" class=\"purple_btn edit_btn\" data-disable-with=\"Edit\">")
         edit_btn_field('.table').append("<input type=\"submit\" name=\"commit\" value=\"Delete\" class=\"purple_btn\" remote=\"true\" method=\"delete\" data-disable-with=\"Delete\">")
@@ -39,6 +40,7 @@ $(document).on('turbolinks:load', ->
 
   edit_data_in_row = (data, event, for_param="id") ->
     cols = $(".table").find("label[for='"+for_param+"']:contains('"+data[0]+"')").parent().siblings()
+    # remove debug methods before commiting code
     console.log(cols)
     for i in [0..cols.length-2]
       cols.eq(i).children("").first().text(data[i+1])
@@ -185,7 +187,6 @@ $(document).on('turbolinks:load', ->
         }
         error: (xhr, ajaxOptions, error) ->
           responce = JSON.parse(xhr.responseText)
-          console.log(responce.errors)
           errors_log=Object.entries(responce.errors)
           $(".edit_form").find(".error_field").show("slow")
           for i in [0..errors_log.length-1]

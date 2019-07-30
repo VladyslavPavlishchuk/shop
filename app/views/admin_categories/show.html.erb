@@ -1,5 +1,7 @@
+<!-- This shows collection of categories, thous it's should be 'index', not 'show' -->
 <%if user_signed_in? && current_user['role'] === 'admin'%>
     <div class = "redact_background" id = "categories_table">
+      <!-- Why is this a form? It should be a table with <p> or <span> instead of labels <button> or <a> elements instead of submits -->
       <%= form_with url: 'admin/categories' do |form|%>
           <table class="table">
             <tr class="table_header">
@@ -8,6 +10,7 @@
               <th><%= form.label 'Priority' %></th>
               <th class="right_header_row"></th>
             </tr>
+         <!-- Use collection rendering instead: https://guides.rubyonrails.org/layouts_and_rendering.html#rendering-collections-->
           <% @categories.each do |category| %>
                 <tr class="row">
                   <td class="category_field"><%= form.label :show_id, category.id%></td>
@@ -19,8 +22,10 @@
           <% end %>
           </table>
           <br>
+          <!-- Should be <button> or <a> -->
           <%= form.submit "Add new", class: 'big_purple_btn' %>
       <% end %>
+      <!-- Move to partial: https://guides.rubyonrails.org/layouts_and_rendering.html#using-partials -->
       <%=form_with url: 'admin/categories' do |form|%>
           <div class='edit_form'>
             <%= form.hidden_field :id %>
@@ -32,5 +37,6 @@
       <% end %>
     </div>
 <% else %>
+    <!-- Do not raise errors in view, display html element with error description for user instead -->
     <% raise ActionController::RoutingError.new('Not Found') %>
 <% end %>
