@@ -1,5 +1,5 @@
 <%if user_signed_in? && current_user['role'] === 'admin'%>
-    <div class = "redact_background">
+    <div class = "redact_background" id="products_table">
       <%= form_with url: 'admin/products' do |form|%>
           <table class="table">
             <tr class="table_header">
@@ -32,9 +32,7 @@
               <%= form.text_field :price, placeholder: 'Price', class: "small_field"%>
               <%= form.select :category_id, Category.all.map{ |category| category.id },{},{required: 'true', class: 'small_field'}%>
               <%= form.text_area :description, placeholder: 'Description', class:"big_field"%>
-            <div class='error_field'>
-
-            </div>
+            <div class='error_field'></div>
               <%= form.submit "Save", class: 'purple_btn' %>
           </div>
       <% end %>

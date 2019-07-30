@@ -1,5 +1,5 @@
 <%if user_signed_in? && current_user['role'] === 'admin'%>
-    <div class="redact_background">
+    <div class = "redact_background" id = "categories_table">
       <%= form_with url: 'admin/categories' do |form|%>
           <table class="table">
             <tr class="table_header">
@@ -27,6 +27,7 @@
             <%= form.text_field :name, placeholder: 'Category name', class: "medium_field"%>
             <%= form.text_field :priority, placeholder: 'Priority', class: "small_field"%>
             <%= form.submit "Save", class: 'purple_btn' %>
+            <div class='error_field'></div>
           </div>
       <% end %>
     </div>
