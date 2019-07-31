@@ -1,6 +1,9 @@
 class AdminCategoriesController < ApplicationController
-  def show
+  def index
     @categories = Category.all
+  end
+
+  def newest
     new = Category.order("created_at").last
     respond_to do |format|
       msg = {id: new.id, name: new.name, priority: new.priority}
@@ -11,24 +14,33 @@ class AdminCategoriesController < ApplicationController
   end
 
   def create
-    created = Category.create(params.permit(:name, :priority))
+    created = Category.new(params.permit(:name, :priority))
+    created.save
     respond_to do |format|
       if created.errors.any?
         format.js{ render json: {errors: created.errors}, status: :not_acceptable }
       else
-        format.js { head :ok;}
+        format.js { render json: created, status: :created}
       end
-      format.json {head :ok}
+      format.json {head :created}
     end
   end
 
   def delete
-    Category.all.find(params[:id]).destroy
-
+    for_delete = Category.find_by id: params[:id]
+    p params
+    if for_delete == nil
+      p for_delete.errors.add(:id, "not found")
+    else
+      for_delete.destroy
+    end
     respond_to do |format|
-      format.js
-      format.json {head :ok;
-      }
+      if for_delete.errors.any?
+        format.js{ render json: {errors: for_delete.errors}, status: :not_acceptable }
+      else
+        format.js {head :no_content}
+      end
+      format.json {head :no_content}
     end
   end
 
@@ -38,9 +50,10 @@ class AdminCategoriesController < ApplicationController
       if updated.errors.any?
         format.js{ render json: {errors: updated.errors}, status: :not_acceptable }
       else
-        format.js { head :ok;}
+        format.js { render json: updated, status: :ok;}
       end
       format.json { head :ok;}
     end
   end
 end
+

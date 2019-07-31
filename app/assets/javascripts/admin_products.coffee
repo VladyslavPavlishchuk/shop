@@ -31,15 +31,14 @@ $(document).on('turbolinks:load', ->
       success: (response) ->
         resp = JSON.parse(response)
         for i in [0..response.length-1]
-          $('.table').find("tr").last().find("td").eq(i).append("<lable '"+Object.keys(resp)[i]+"'>"+Object.values(resp)[i]+"</lable>")
+          $('.table tr:last td').eq(i).append("<p class='"+Object.keys(resp)[i]+"'>"+Object.values(resp)[i]+"</p>")
         edit_btn_field('.table').empty()
-        edit_btn_field('.table').append("<input type=\"submit\" name=\"commit\" value=\"Edit\" class=\"purple_btn edit_btn\" data-disable-with=\"Edit\">")
-        edit_btn_field('.table').append("<input type=\"submit\" name=\"commit\" value=\"Delete\" class=\"purple_btn\" remote=\"true\" method=\"delete\" data-disable-with=\"Delete\">")
+        edit_btn_field('.table').append("<button type=\"button\" class=\"purple_btn\">Edit</button>")
+        edit_btn_field('.table').append("<button type=\"button\" class=\"purple_btn\">Delete</button>")
    )
 
   edit_data_in_row = (data, event, for_param="id") ->
-    cols = $(".table").find("label[for='"+for_param+"']:contains('"+data[0]+"')").parent().siblings()
-    console.log(cols)
+    cols = $(".table").find("p[class='"+for_param+"']:contains('"+data[0]+"')").parent().siblings()
     for i in [0..cols.length-2]
       cols.eq(i).children("").first().text(data[i+1])
 
@@ -57,15 +56,14 @@ $(document).on('turbolinks:load', ->
     $('.big_purple_btn').hide("slow", -> $(".edit_form").show("slow"));
   )
 
-  $('#products_table').find("input[value='Edit']").on('click', (event) ->
+  $('#products_table button:contains("Edit")').on('click', (event) ->
     event.preventDefault();
     $('.big_purple_btn').hide("slow", -> $(".edit_form").show("slow"));
-    if $('form[action="admin/products"]').length
-      set_input_val(".edit_form", "input[type='hidden']", get_text("label[for='id']", event));
-      set_input_val(".edit_form", "input[name='name']", get_text("label[for='name']", event));
-      set_input_val(".edit_form", "input[name='price']", get_text("label[for='price']", event));
-      set_input_val(".edit_form", "select[name='category_id']", get_text("label[for='category_id']", event));
-      set_input_val(".edit_form", "textarea[name='description']", get_text("label[for='description']", event));
+    set_input_val(".edit_form", "input[type='hidden']", get_text("p[class='id']", event));
+    set_input_val(".edit_form", "input[name='name']", get_text("p[class='name']", event));
+    set_input_val(".edit_form", "input[name='price']", get_text("p[class='price']", event));
+    set_input_val(".edit_form", "textarea[name='description']", get_text("p[class='description']", event));
+    set_input_val(".edit_form", "select[name='category_id']", get_text("p[class='category_id']", event));
   )
 
 #Hide edit form and show new btn
@@ -73,10 +71,10 @@ $(document).on('turbolinks:load', ->
     event.preventDefault();
     $('.big_purple_btn').hide("slow", -> $(".edit_form").show("slow"));
     id_value = $(event.target.parentNode).find("input[type='hidden']").val()
-    name_value = $('.edit_form').find("input[name='name']").val()
-    price_value = $('.edit_form').find("input[name='price']").val()
-    description_value = $('.edit_form').find("textarea[name='description']").val()
-    category_value = $('.edit_form').find("select[name='category_id']").val()
+    name_value = $('.edit_form input[name="name"]').val()
+    price_value = $('.edit_form input[name="price"]').val()
+    description_value = $('.edit_form textarea[name="description"]').val()
+    category_value = $('.edit_form select[name="category_id"]').val()
     if !$(event.target.parentNode).find("input[type='hidden']").val().trim().length
       $.ajax(
         url: 'products'
@@ -90,7 +88,7 @@ $(document).on('turbolinks:load', ->
         success: ->
           $(".edit_form").hide("slow", -> $('.big_purple_btn').show("slow"))
           add_row(6, ".table")
-          add_data_to_row('.table', 'products')
+          add_data_to_row('.table', 'products/newest')
           $(".edit_form").find(".error_field").hide();
         error: (responce, json) ->
           $(".edit_form").find(".error_field").show("slow")
@@ -110,7 +108,6 @@ $(document).on('turbolinks:load', ->
         }
         error: (xhr, ajaxOptions, error) ->
           responce = JSON.parse(xhr.responseText)
-          console.log(responce.errors)
           errors_log=Object.entries(responce.errors)
           $(".edit_form").find(".error_field").show("slow")
           for i in [0..errors_log.length-1]
@@ -124,15 +121,15 @@ $(document).on('turbolinks:load', ->
       )
   );
 
-#Delete row console.log()
-  $('#products_table').find("input[value='Delete']").on('click', (event) ->
+#Delete row
+  $('#products_table').find("button:contains('Delete')").on('click', (event) ->
     if confirm("Are you sure?")
       $.ajax({
         url: 'products'
         type: 'post'
         method: 'DELETE'
         success: $(event.target.closest('.row').remove())
-        data: {id: get_text("label[for='id']", event)}
+        data: {id: get_text("p[class='id']", event)}
       })
     event.preventDefault();
   )
@@ -140,13 +137,12 @@ $(document).on('turbolinks:load', ->
 
 #=======================================================================================================
 
-  $('#categories_table').find("input[value='Edit']").on('click', (event) ->
+  $('#categories_table').find("button:contains('Edit')").on('click', (event) ->
     event.preventDefault();
     $('.big_purple_btn').hide("slow", -> $(".edit_form").show("slow"));
-    if $('form[action="admin/categories"]').length
-      set_input_val(".edit_form", "input[type='hidden']", get_text("label[for='show_id']", event));
-      set_input_val(".edit_form", "input[name='name']", get_text("label[for='show_name']", event));
-      set_input_val(".edit_form", "input[name='priority']", get_text("label[for='show_priority']", event));
+    set_input_val(".edit_form", "input[type='hidden']", get_text("p[class='show_id']", event));
+    set_input_val(".edit_form", "input[name='name']", get_text("p[class='show_name']", event));
+    set_input_val(".edit_form", "input[name='priority']", get_text("p[class='show_priority']", event));
   )
 
   #Hide edit form and show new btn
@@ -154,9 +150,9 @@ $(document).on('turbolinks:load', ->
     event.preventDefault();
     $('.big_purple_btn').hide("slow", -> $(".edit_form").show("slow"));
     id_value = $(event.target.parentNode).find("input[type='hidden']").val()
-    name_value = $('.edit_form').find("input[name='name']").val()
-    priority_value = $('.edit_form').find("input[name='priority']").val()
-    if !$(event.target.parentNode).find("input[type='hidden']").val().trim().length
+    name_value = $('.edit_form input[name="name"]').val()
+    priority_value = $('.edit_form input[name="priority"]').val()
+    if !id_value.trim().length
       $.ajax(
         url: 'categories'
         type: 'post'
@@ -167,7 +163,7 @@ $(document).on('turbolinks:load', ->
         success: ->
           $(".edit_form").hide("slow", -> $('.big_purple_btn').show("slow"))
           add_row(4, ".table")
-          add_data_to_row('.table', 'categories')
+          add_data_to_row('.table', 'categories/newest')
           $(".edit_form").find(".error_field").hide();
         error: (responce, json) ->
           $(".edit_form").find(".error_field").show("slow")
@@ -185,7 +181,6 @@ $(document).on('turbolinks:load', ->
         }
         error: (xhr, ajaxOptions, error) ->
           responce = JSON.parse(xhr.responseText)
-          console.log(responce.errors)
           errors_log=Object.entries(responce.errors)
           $(".edit_form").find(".error_field").show("slow")
           for i in [0..errors_log.length-1]
@@ -199,15 +194,15 @@ $(document).on('turbolinks:load', ->
       )
   );
 
-#Delete row console.log()
-  $('#categories_table').find("input[value='Delete']").on('click', (event) ->
+#Delete row
+  $('#categories_table').find("button:contains('Delete')").on('click', (event) ->
     if confirm("Are you sure?")
       $.ajax({
         url: 'categories'
         type: 'post'
         method: 'DELETE'
         success: $(event.target.closest('.row').remove())
-        data: {id: get_text("label[for='id']", event)}
+        data: {id: get_text("p[class='show_id']", event)}
       })
     event.preventDefault();
   )

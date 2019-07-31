@@ -1,0 +1,22 @@
+<%if user_signed_in? && current_user['role'] === 'admin'%>
+    <div class = "redact_background" id="products_table">
+      <div class="form">
+          <table class="table">
+            <tr class="table_header">
+              <th class="left_header_row"><p> 'Id' </p></th>
+              <th><p> 'Name' </p></th>
+              <th><p> 'Price' </p></th>
+              <th><p> 'Description' </p></th>
+              <th><p> 'Category Id' </p></th>
+              <th class="right_header_row"></th>
+            </tr>
+            <%= render partial: "shared/product_row", collection: @products, as: :product %>
+          </table>
+          <br>
+          <button type="button" class="big_purple_btn">Add new</button>
+        </div>
+      <%= render partial: "shared/products_edit" %>
+    </div>
+<% else %>
+    <%= render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found %>
+<% end %>

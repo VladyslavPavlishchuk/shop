@@ -118,7 +118,15 @@ a{
 }
 
 .redact_background > form{
-    background-color: #50baff;
+    background-color: #aabffc;
+    padding: 0.2em 0.7em 0.7em 0.2em;
+    border-style: hidden;
+    display: flex;
+    flex-flow: wrap column;
+}
+
+.redact_background > .form{
+    background-color: #aabffc;
     padding: 0.2em 0.7em 0.7em 0.2em;
     border-style: hidden;
     display: flex;
@@ -169,7 +177,7 @@ a{
     background-color: #817dff;
     border-radius: 0.5em;
     border: #817dff 0.1em;
-    width: 3.5em;
+    width: 3.8em;
     height: 1.3em;
     color: white;
     font-size: 1em;
@@ -243,7 +251,7 @@ a{
 }
 
 body{
-    background-color: white;
+    background-color: #CCCCCC;
     font-size: 62.5%;
     display: flex;
     flex-flow: column wrap;

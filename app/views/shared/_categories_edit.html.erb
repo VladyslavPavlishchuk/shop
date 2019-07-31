@@ -1,0 +1,9 @@
+<%=form_with url: 'categories' do |form|%>
+    <div class='edit_form'>
+      <%= form.hidden_field :id %>
+      <%= form.text_field :name, placeholder: 'Category name', class: "medium_field"%>
+      <%= form.text_field :priority, placeholder: 'Priority', class: "small_field"%>
+      <%= form.submit "Save", class: 'purple_btn' %>
+      <div class='error_field'></div>
+    </div>
+<% end %>
