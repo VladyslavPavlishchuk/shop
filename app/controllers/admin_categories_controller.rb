@@ -28,7 +28,6 @@ class AdminCategoriesController < ApplicationController
 
   def delete
     for_delete = Category.find_by id: params[:id]
-    p params
     if for_delete == nil
       p for_delete.errors.add(:id, "not found")
     else
