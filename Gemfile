@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.3.8'
+ruby '2.5.1'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
+gem 'carrierwave', '>= 2.0.0.rc', '< 3.0', :git => "https://github.com/carrierwaveuploader/carrierwave"
 gem 'jquery-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

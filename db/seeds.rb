@@ -9,6 +9,8 @@
 users = %w(Jack Nick Mike Mary)
 users.each { |user| User.create(name: user, email:"#{user}mail1@gmail.com") }
 
+User.create(name: "admin", email:"admin@admin.com", role:"admin", password:"adminadmin")
+
 categories=%w(Sausages Bread Dessert Alcohol Drinks)
 categories.each{ |category| Category.create(name: category, priority: category.length*2) }
 

@@ -21,6 +21,13 @@
         <div class="field">
           <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: ' Retype password' %>
         </div>
+      <br>
+      <div class="field">
+        <%= f.label :image do %>
+          <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %>
+        <%end %>
+      </div>
         <br>
         <div class="buttons">
         <div class="actions">
