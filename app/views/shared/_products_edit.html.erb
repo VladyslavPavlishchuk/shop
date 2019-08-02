@@ -1,10 +1,16 @@
-<%=form_with url: 'products' do |form|%>
+<%=form_with url: 'products', remote: true, multipart: true do |form|%>
     <div class='edit_form'>
       <%= form.hidden_field :id %>
       <%= form.text_field :name, placeholder: 'Name', class: "medium_field"%>
       <%= form.text_field :price, placeholder: 'Price', class: "small_field"%>
       <%= form.select :category_id, Category.all.map{ |category| category.id },{},{required: 'true', class: 'small_field'}%>
       <%= form.text_area :description, placeholder: 'Description', class:"big_field"%>
+      <div id="remove_image">
+            <%= form.check_box :remove_image %>
+            <%= form.label :remove_image%>
+      </div>
+      <%= form.file_field :image, id:"image_field"%>
+      <%= form.hidden_field :image_cache %>
       <div class='error_field'></div>
       <%= form.submit "Save", class: 'purple_btn' %>
     </div>

@@ -6,8 +6,6 @@ class User < ApplicationRecord
   has_one :category
 
   mount_uploader :image, ImageUploader
-  validates_presence_of :image
-
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, uniqueness: true, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }
 end

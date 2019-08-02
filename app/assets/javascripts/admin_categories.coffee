@@ -18,14 +18,14 @@
 #
 #  $("input[value='Edit']").on('click', (event) ->
 #    event.preventDefault();
-#    $('.big_purple_btn').hide("slow", -> $(".edit_form").show("slow"));
+#    $('.big_purple_btn').hide("slow", -> $(".edit_form").index("slow"));
 #    if $('form[action="admin/categories"]').length
 #      set_input_val(".edit_form", "input[type='hidden']", get_label_text("label[for='show_id']", event));
 #      set_input_val(".edit_form", "input[name='name']", get_label_text("label[for='show_name']", event));
 #      set_input_val(".edit_form", "input[name='priority']", get_label_text("label[for='show_priority']", event));
 #  )
 #
-#  #Hide edit form and show new btn
+#  #Hide edit form and index new btn
 #  $("input[value='Save']").on('click', (event) ->
 #    if $('form[action="admin/categories"]').length
 #      add_row(4, ".table");

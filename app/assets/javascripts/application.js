@@ -11,7 +11,8 @@
 // about supported directives.
 //
 //= require jquery3
-//= require jquery_ujs
+//= require rails-ujs
+//= require jquery.remotipart
 //= require activestorage
 //= require turbolinks
 //= require_tree .

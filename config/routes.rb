@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
-  get '/admin/users' => 'users_administration#show'
+  get '/admin/users' => 'users_administration#index'
   post '/admin/users' => 'users_administration#update'
   patch '/admin/users' => 'users_administration#update'
 
   get '/admin/products' => 'admin_products#index'
+  get '/admin/products/show' => 'admin_products#show'
   get '/admin/products/newest' => 'admin_products#newest'
   post '/admin/products' => 'admin_products#create'
   patch '/admin/products' => 'admin_products#update'

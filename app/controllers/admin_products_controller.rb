@@ -3,10 +3,19 @@ class AdminProductsController < ApplicationController
     @products = Product.all
   end
 
+  def show
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.js {render json: @product}
+      format.json {render json: @product}
+      format.html
+    end
+  end
+
   def newest
     new = Product.order("created_at").last
     respond_to do |format|
-      msg = {id: new.id, name: new.name, price: new.price, description: new.description, category_id: new.category_id}
+      msg = {id: new.id, name: new.name, price: new.price, description: new.description, category_id: new.category_id, image: new.image}
       format.js {render json: msg}
       format.html
       format.json {response json: msg}
@@ -14,8 +23,9 @@ class AdminProductsController < ApplicationController
   end
 
   def create
-    created = Product.new(params.permit(:name, :price, :category_id, :description))
-    created.save
+    p params
+    created = Product.new(params.permit(:name, :price, :category_id, :description, :image))
+    created.save!
     respond_to do |format|
       if created.errors.any?
         format.js{ render json: {errors: created.errors}, status: :not_acceptable }
@@ -44,8 +54,10 @@ class AdminProductsController < ApplicationController
   end
 
   def update
-    updated = Product.update(params[:id],{name: params[:name], price: params[:price], category_id: params[:category_id], description: params[:description]})
-
+    p params
+    updated = Product.update(params[:id],{name: params[:name], price: params[:price],
+                                                      category_id: params[:category_id], description: params[:description],
+                                                      image: params[:image]})
     respond_to do |format|
       if updated.errors.any?
         format.js{ render json: {errors: updated.errors}, status: :not_acceptable }

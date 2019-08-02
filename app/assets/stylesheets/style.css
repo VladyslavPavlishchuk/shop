@@ -113,25 +113,26 @@ a{
 }
 
 .redact_background{
-    width: 25%;
+    width: 30%;
     height: auto;
 }
 
 .redact_background > form{
-    background-color: #aabffc;
+    padding: 0.2em 0.7em 0.7em 0.2em;
+    border-style: hidden;
+    justify-content: space-around;
+    display: flex;
+    flex-flow: wrap column;
+}
+
+
+.redact_background > .form{
     padding: 0.2em 0.7em 0.7em 0.2em;
     border-style: hidden;
     display: flex;
     flex-flow: wrap column;
 }
 
-.redact_background > .form{
-    background-color: #aabffc;
-    padding: 0.2em 0.7em 0.7em 0.2em;
-    border-style: hidden;
-    display: flex;
-    flex-flow: wrap column;
-}
 
 .table{
     background-color: white;
@@ -248,6 +249,23 @@ a{
 .big_field{
     width: 100%;
     margin: 0.2em;
+}
+
+.user_edit_form{
+    border-color: black;
+    border-style: solid;
+    border-width: 0.2em;
+    display: flex;
+    flex-flow: row wrap;
+background-color: white;
+}
+
+.users_table{
+    border-color: black;
+    border-style: solid;
+    border-width: 0.2em;
+    padding: 1em;
+    background-color: #b7c6fc;
 }
 
 body{

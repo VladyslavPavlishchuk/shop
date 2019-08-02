@@ -1,6 +1,17 @@
 <%if user_signed_in? && current_user['role'] === 'admin'%>
+ <div class="users_table">
   <% @users.each do |user| %>
+   <div class="user_edit_form">
     <%= form_with url:'/admin/users', data_remote: false do |form| %>
+      <div class="field">
+        <% if user.image.url.present? %>
+          <%= image_tag(current_user.image.url(:thumb)) %>
+          <%= form.check_box :remove_image %>
+          <%= form.label :remove_image%>
+        <%end %>
+          <%= form.file_field :image %>
+          <%= form.hidden_field :image_cache %>
+      </div>
       <%= form.hidden_field :id, value: user.id%>
       <%= form.text_field :name, value: user.name%>
       <%= form.text_field :email, value: user.email %>
@@ -19,8 +30,11 @@
 
       <%= form.submit "Save" %>
     <% end %>
+   </div>
     <br>
   <% end %>
+  <%= link_to "Back", :back %>
+ </div>
 <% else %>
   <% raise ActionController::RoutingError.new('Not Found') %>
 <% end %>
