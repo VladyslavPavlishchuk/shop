@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
+  root to: 'pages#index'
 
   get '/admin/users' => 'users_administration#index'
   post '/admin/users' => 'users_administration#update'
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   patch '/admin/categories' => 'admin_categories#update'
   delete '/admin/categories' => 'admin_categories#delete'
 
-
+  get '/user/cart' => 'carts#show'
 
   get 'pages/page'
 

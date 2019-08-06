@@ -9,6 +9,8 @@ gem 'rails', '~> 5.2.3'
 gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 gem 'remotipart', '~> 1.3.1'
 gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.9.0'
+gem 'bootstrap', '~> 4.3.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -18,8 +20,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
-gem 'therubyracer'
+gem 'mini_racer', platforms: :ruby
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
