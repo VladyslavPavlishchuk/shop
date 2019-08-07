@@ -5,11 +5,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-2">
-      <ul class="list-group overflow-auto h-25">
-        <li class="list-group-item list-group-item-action active">Category_1</li>
-        <% 5.times  do |i|%>
-              <li class="list-group-item list-group-item-action">Category_<%= i+2 %></li>
+    <div class="col-2 h-100">
+      <ul class="list-group overflow-auto h-25" id="categories_list">
+        <% @categories.each_with_index  do |category,i|%>
+            <% if i==0%>
+                <div>
+                  <p class="sr-only"><%= category.id %></p>
+                  <li class="list-group-item list-group-item-action active"><%= category.name %></li>
+                </div>
+            <%else %>
+                <div>
+                  <p class="sr-only"><%= category.id %></p>
+                  <li class="list-group-item list-group-item-action"><%= category.name %></li>
+                </div>
+            <% end %>
         <% end %>
       </ul>
       <div class="input-group mt-3">
@@ -21,13 +30,11 @@
     </div>
     <div class="col-10 ">
       <div class="row">
-        <% 12.times do %>
-          <div class="col-6">
-            <%= render partial:'shared/product_card' %>
-          </div>
-        <% end %>
+        <div class="col-12">
+          <%= render partial: 'shared/product_card', locals: {products: @products} %>
+        </div>
       </div>
-      <%= render partial: 'shared/pagination' %>
+      <%= paginate @products, theme: 'twitter-bootstrap-4' %>
     </div>
   </div>
 </div>

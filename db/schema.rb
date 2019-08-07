@@ -10,13 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_212311) do
+ActiveRecord::Schema.define(version: 2019_08_07_111332) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "priority", default: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.integer "amount_type"
+    t.integer "amount"
+    t.integer "discount_type"
+    t.integer "target_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ordered_products", force: :cascade do |t|
+    t.integer "order_id_id"
+    t.integer "product_id_id"
+    t.integer "discount_id_id"
+    t.integer "quontity"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discount_id_id"], name: "index_ordered_products_on_discount_id_id"
+    t.index ["order_id_id"], name: "index_ordered_products_on_order_id_id"
+    t.index ["product_id_id"], name: "index_ordered_products_on_product_id_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id_id"], name: "index_orders_on_user_id_id"
   end
 
   create_table "products", force: :cascade do |t|

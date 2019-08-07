@@ -1,5 +1,5 @@
 <nav class="nav nav-tabs">
-  <%= link_to 'Home', "/home", class: 'nav-item nav-link active border-right'%>
+  <%= link_to 'Home', root_path, class: 'nav-item nav-link active border-right'%>
   <%= link_to 'About', "/about", class: 'nav-item nav-link border-right'%>
   <%= link_to 'Shop', "/shop", class: 'nav-item nav-link border-right'%>
   <% if current_user && current_user[:role]=="admin" %>
@@ -10,10 +10,10 @@
         <%= link_to 'Edit categories', "/admin/categories", class: 'dropdown-item'%>
         <%= link_to 'Edit products', "/admin/products", class: 'dropdown-item'%>
       </div>
-      <a href="user/cart" class="btn btn-primary btn-lg active ml-auto p-25" role="button" aria-pressed="true"><%= icon('fas', 'shopping-cart') %> Your cart</a>
+      <a href="user/cart" class="btn btn-primary btn-lg active ml-auto my-auto  p-1 h-75" role="button" style="font-size: medium" aria-pressed="true"><%= icon('fas', 'shopping-cart') %> Your cart</a>
   <% elsif current_user %>
       <%= link_to 'Profile', "/users/edit", class: 'nav-item nav-link border-right'%>
-      <a href="user/cart" class="btn btn-primary btn-lg active ml-auto" role="button" aria-pressed="true"><%= icon('fas', 'shopping-cart') %> Your cart</a>
+      <a href="user/cart" class="btn btn-primary btn-lg active ml-auto my-auto  p-1 h-75" role="button" style="font-size: medium" aria-pressed="true"><%= icon('fas', 'shopping-cart') %> Your cart</a>
   <% else %>
       <%= link_to 'Sign up', new_user_registration_path, class: 'nav-item nav-link border-right' %>
       <%= link_to 'Sign_in', new_user_session_path, class: 'nav-item nav-link'  %>

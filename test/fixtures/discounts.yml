@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount_type: 1
+  amount: 1
+  discount_type: 1
+  target_id: 1
+
+two:
+  amount_type: 1
+  amount: 1
+  discount_type: 1
+  target_id: 1

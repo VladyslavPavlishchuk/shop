@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/user/cart' => 'carts#show'
 
   get 'pages/page'
+  get 'pages/products' => 'pages#index'
 
   devise_for :users, controllers: {
       sessions: 'users/sessions',
