@@ -29,24 +29,24 @@ ActiveRecord::Schema.define(version: 2019_08_07_111332) do
   end
 
   create_table "ordered_products", force: :cascade do |t|
-    t.integer "order_id_id"
-    t.integer "product_id_id"
-    t.integer "discount_id_id"
+    t.integer "order_id"
+    t.integer "product_id"
+    t.integer "discount_id"
     t.integer "quontity"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["discount_id_id"], name: "index_ordered_products_on_discount_id_id"
-    t.index ["order_id_id"], name: "index_ordered_products_on_order_id_id"
-    t.index ["product_id_id"], name: "index_ordered_products_on_product_id_id"
+    t.index ["discount_id"], name: "index_ordered_products_on_discount_id"
+    t.index ["order_id"], name: "index_ordered_products_on_order_id"
+    t.index ["product_id"], name: "index_ordered_products_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id_id"
+    t.integer "user_id"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id_id"], name: "index_orders_on_user_id_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|

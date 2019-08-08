@@ -18,7 +18,20 @@ products=['Vienna sausage', 'Bratwurst ', 'Salami', 'Hotdogs', 'Black bread', 'B
           'Napoleon cake', 'Ice cream', 'Cheesecake', 'Tiramisu', 'Beer', 'Vine', 'Whisky','Tequila',
           'Juice', 'Water','Coca-cola','Smoothy']
 products.size.times do |count|
-      Product.create(name: products[count], price: products[count].length,
-                              description: "This is #{products[count]}.", category_id: count/4)
-  #randomtext
+  def get_category(count)
+    if count < 4
+      1
+    elsif count < 8
+      2
+    elsif count < 12
+      3
+    elsif count < 16
+      4
+    elsif count < 20
+      5
+    end
+  end
+  Product.create(name: products[count], price: products[count].length,
+                 description: "This is #{products[count]}.", category_id: get_category(count))
 end
+

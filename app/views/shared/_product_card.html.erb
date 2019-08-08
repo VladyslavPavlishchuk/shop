@@ -1,20 +1,26 @@
 <div class="row">
-  <% products.each do |product|%>
-      <div class="col-6">
-        <div class="card mb-3 border-0" style="max-width: 400px;">
-          <div class="row no-gutters w-100">
-            <div class="col-md-5" style="background: #868e96;">
-              <%= image_tag(product.image.url,class:'card-img-top', style:"max-height: 100px;") %>
-            </div>
-            <div class="col-md-7">
-              <div class="card-body">
-                <h5 class="card-title"><%= product.name %></h5>
-                <p class="card-text d-inline">$<%= product.price %></p>
-                <a href="#" class="btn btn-primary stretched-link d-inline float-right">+</a>
+  <div class="col-12">
+    <div class="row">
+      <% products.each do |product|%>
+          <div class="col-6">
+            <div class="card mb-3 border-0" style="max-width: 400px;">
+              <div class="row no-gutters w-100">
+                <div class="col-md-5" style="background: #868e96;">
+                  <%= image_tag(product.image.url,class:'card-img-top') %>
+                </div>
+                <div class="col-md-7">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= product.name %></h5>
+                    <p class="card-text d-inline">$<%= product.price %></p>
+                    <p class="invisible"><%= product.id%></p>
+                    <a href="#" class="btn btn-primary stretched-link d-inline float-right">+</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-  <% end %>
+      <% end %>
+    </div>
+    <%= paginate products, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>

@@ -11,9 +11,7 @@
           <h3 class="text-muted">Shopping cart</h3>
         </div>
       </div>
-      <% 4.times do %>
-        <%= render partial: 'shared/cart_product_card' %>
-      <% end %>
+        <%= render partial: 'shared/cart_product_card', locals: {}  %>
       <div class="row border-top mb-5 pt-3">
         <div class="col-12">
           <button type="button" class="btn btn-primary w-25">Next</button>
