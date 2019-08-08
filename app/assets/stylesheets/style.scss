@@ -1,5 +1,4 @@
-
-.registration{
+.custom_registration {
     border-style: inset;
     border-width: 0.1em;
     padding-left: 2em;
@@ -8,7 +7,7 @@
     background-color: white;
 }
 
-.registration_error{
+.custom_registration_error {
     border-style: inset;
     border-width: 0.1em;
     padding-left: 2em;
@@ -17,7 +16,7 @@
     background-color: white;
 }
 
-.login{
+.custom_login {
     border-style: inset;
     border-width: 0.1em;
     padding-left: 2em;
@@ -26,7 +25,7 @@
     background-color: white;
 }
 
-.login_error{
+.custom_login_error {
     border-style: inset;
     border-width: 0.1em;
     padding-left: 2em;
@@ -35,7 +34,7 @@
     background-color: white;
 }
 
-.buttons{
+.custom_buttons {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -44,25 +43,26 @@
     margin-bottom: 2em;
 }
 
-.container > img{
+.custom_container > {
+img {
     width: 12em;
     height: 6em;
-    display:flex;
-    margin:auto;
+    display: flex;
+    margin: auto;
+}
+input {
+&[type=email], &[type=password], &[type=text] {
+                                      width: 100%;
+                                      min-width: 17em;
+                                      height: 2em;
+                                      background-color: #EFEFEF;
+                                      border-radius: 0.3em;
+                                      margin-bottom: 1.6em;
+                                  }
+}
 }
 
-.container > input[type=email], .container > input[type=password], .container > input[type=text]{
-    width: 100%;
-    min-width: 17em;
-    height: 2em;
-    background-color: #EFEFEF;
-    border-radius: 0.3em;
-    margin-bottom: 1.6em;
-}
-
-
-.blue_btn{
-
+.custom_blue_btn {
     background-color: royalblue;
     border-radius: 0.5em;
     border: royalblue 0.1em;
@@ -72,7 +72,7 @@
     font-size: 1.4em;
 }
 
-.grey_btn{
+.custom_grey_btn {
     background-color: #EFEFEF;
     color: black;
     font: normal 12px arial, sans-serif;
@@ -83,19 +83,14 @@
     border-radius: 0.5em;
     border: outset #EFEFEF 0.1em;
     cursor: default;
-
     font-size: 1.4em;
 }
 
-.registration > h2, .login > h2{
+.custom_registration > h2, .login > h2 {
     font-size: 2.3em;
 }
 
-a{
-    font-size: 1.2em;
-}
-
-.error{
+.custom_error {
     display: flex;
     background-color: #DF013A;
     color: white;
@@ -104,37 +99,33 @@ a{
     height: 1.2em;
     border-style: inset;
     border-width: 0em 0.05em 0.05em 0.05em;
-}
-
-
-.error > li{
+> li {
     list-style-type: none;
     margin-left: 1.5em;
 }
-
-.redact_background{
-    width: 30%;
-    height: auto;
 }
 
-.redact_background > form{
+.custom_redact_background {
+    width: 30%;
+    height: auto;
+> {
+.custom_form1 {
     padding: 0.2em 0.7em 0.7em 0.2em;
     border-style: hidden;
     justify-content: space-around;
     display: flex;
     flex-flow: wrap column;
 }
-
-
-.redact_background > .form{
+.custom_form {
     padding: 0.2em 0.7em 0.7em 0.2em;
     border-style: hidden;
     display: flex;
     flex-flow: wrap column;
 }
+}
+}
 
-
-.table{
+.custom_table {
     background-color: white;
     border-radius: 1em;
     border-style: hidden;
@@ -142,39 +133,33 @@ a{
     table-layout: fixed;
 }
 
-.row{
+.custom_row, .custom_edit_row {
     border-bottom: solid 0.1em rgba(185, 179, 186, 0.56);
     font-size: 1.5em;
 }
 
-.edit_row{
-    border-bottom: solid 0.1em rgba(185, 179, 186, 0.56);
-    font-size: 1.5em;
-}
-
-.on_click_row{
+.custom_on_click_row {
     background-color: #CCC3FF;
     border-bottom: solid 0.1em rgba(185, 179, 186, 0.56);
     font-size: 1.5em;
 }
 
-
-.table_header{
+.custom_table_header {
     background-color: #817dff;
     font-size: 1.5em;
     color: white;
     word-wrap: break-word;
 }
 
-.left_header_row{
+.custom_left_header_row {
     border-radius: 0.6em 0em 0em 0em;
 }
 
-.right_header_row{
+.custom_right_header_row {
     border-radius: 0em 0.6em 0em 0em;
 }
 
-.purple_btn{
+.custom_purple_btn {
     background-color: #817dff;
     border-radius: 0.5em;
     border: #817dff 0.1em;
@@ -185,15 +170,15 @@ a{
     margin: 0.1em;
 }
 
-.visible{
+.custom_visible {
     visibility: visible;
 }
 
-.invisible{
+.custom_invisible {
     visibility: collapse;
 }
 
-.big_purple_btn{
+.custom_big_purple_btn {
     background-color: #817dff;
     border-radius: 0.5em;
     border: #817dff 0.1em;
@@ -204,17 +189,17 @@ a{
     margin: auto;
 }
 
-.category_field{
+.custom_category_field {
     width: 25%;
     text-align: center;
     word-wrap: break-word;
 }
 
-.edit_field{
+.custom_edit_field {
     margin-left: 0.5em;
 }
 
-.edit_form{
+.custom_edit_form {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -225,42 +210,41 @@ a{
     font-size: 1.5em;
 }
 
-.small_field{
+.custom_small_field {
     width: 22%;
     margin: 0.2em;
 }
 
-.medium_field{
+.custom_medium_field {
     width: 48%;
     margin: 0.2em;
 }
 
-.error_field{
+.custom_error_field {
     background-color: #fc0100;
     width: 100%;
     text-align: center;
-}
-
-.error_field > p{
+> p {
     margin: 0em;
     padding: 0em;
 }
+}
 
-.big_field{
+.custom_big_field {
     width: 100%;
     margin: 0.2em;
 }
 
-.user_edit_form{
+.custom_user_edit_form {
     border-color: black;
     border-style: solid;
     border-width: 0.2em;
     display: flex;
     flex-flow: row wrap;
-background-color: white;
+    background-color: white;
 }
 
-.users_table{
+.custom_users_table {
     border-color: black;
     border-style: solid;
     border-width: 0.2em;
@@ -268,11 +252,13 @@ background-color: white;
     background-color: #b7c6fc;
 }
 
-body{
-    background-color: #CCCCCC;
-    font-size: 62.5%;
-    display: flex;
-    flex-flow: column wrap;
-    align-content: center;
-    justify-content: center;
+.body {
+  background-color: #CCCCCC;
+  font-size: 62.5%;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }

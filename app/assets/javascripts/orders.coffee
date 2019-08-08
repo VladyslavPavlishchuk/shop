@@ -5,7 +5,6 @@
 $(document).on('turbolinks:load', ->
   $('a:contains(+)').on('click', (event) ->
     event.preventDefault();
-
     $.ajax(
       url:'/current'
       type: 'get'

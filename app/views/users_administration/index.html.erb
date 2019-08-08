@@ -1,9 +1,9 @@
 <%if user_signed_in? && current_user['role'] === 'admin'%>
- <div class="users_table">
+ <div class="custom_users_table">
   <% @users.each do |user| %>
-   <div class="user_edit_form">
+   <div class="custom_user_edit_form">
     <%= form_with url:'/admin/users', data_remote: false do |form| %>
-      <div class="field">
+      <div class="custom_field">
         <% if user.image.url.present? %>
           <%= image_tag(current_user.image.url(:thumb)) %>
           <%= form.check_box :remove_image %>

@@ -1,10 +1,10 @@
-<tr class="row">
-  <td class="category_field"><p class="id"><%= product.id%></p></td>
-  <td class="category_field"><p class="name"><%= product.name%></p></td>
-  <td class="category_field"><p class="price"><%= product.price%></p></td>
-  <td class="category_field"><p class="description"><%= product.description%></p></td>
-  <td class="category_field"><p class="category_id"><%= product.category_id%></p></td>
-  <td class="category_field"><%= image_tag(product.image.url(:thumb)) %></td>
-  <td class="category_field"><button type="button" class="purple_btn">Edit</button>
-    <button type="button" class="purple_btn">Delete</button></td>
+<tr class="custom_row">
+  <td class="custom_category_field"><p class="id"><%= product.id%></p></td>
+  <td class="custom_category_field"><p class="name"><%= product.name%></p></td>
+  <td class="custom_category_field"><p class="price"><%= product.price%></p></td>
+  <td class="custom_category_field"><p class="description"><%= product.description%></p></td>
+  <td class="custom_category_field"><p class="category_id"><%= product.category_id%></p></td>
+  <td class="custom_category_field"><%= image_tag(product.image.url(:thumb)) %></td>
+  <td class="custom_category_field"><button type="button" class="custom_purple_btn">Edit</button>
+    <button type="button" class="custom_purple_btn">Delete</button></td>
 </tr>

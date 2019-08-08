@@ -1,4 +1,4 @@
-<% products.each do |product|%>
+<% products.each_with_index do |product,i|%>
 <div class="row mb-4">
   <div class="col-10">
     <div class="card mb-3 border-0" >
@@ -11,7 +11,7 @@
             <h5 class="card-title"><%= product.name %></h5>
             <p class="card-text d-inline"><%= product.description %></p>
             <div class="card-footer">
-              <small><%= product.price %></small>
+              <small>$<%= ordered_products[i].price %></small>
             </div>
           </div>
         </div>

@@ -1,9 +1,9 @@
-<%=form_with url: 'categories' do |form|%>
-    <div class='edit_form'>
+<%=form_with url: 'categories'  do |form|%>
+    <div class='custom_edit_form'>
       <%= form.hidden_field :id %>
-      <%= form.text_field :name, placeholder: 'Category name', class: "medium_field"%>
-      <%= form.text_field :priority, placeholder: 'Priority', class: "small_field"%>
-      <%= form.submit "Save", class: 'purple_btn' %>
-      <div class='error_field'></div>
+      <%= form.text_field :name, placeholder: 'Category name', class: "custom_medium_field"%>
+      <%= form.text_field :priority, placeholder: 'Priority', class: "custom_small_field"%>
+      <%= form.submit "Save", class: 'custom_purple_btn' %>
+      <div class='custom_error_field'></div>
     </div>
 <% end %>

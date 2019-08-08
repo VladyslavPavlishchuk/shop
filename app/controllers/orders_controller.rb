@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
   def show
-    p params
-    order = Order.find_by(user_id: params[:user_id], status: :cart)
-    @ordered_products = order.ordered_products
+    order = Order.find_by(user_id: current_user[:id], status: :cart)
+    if order
+      @ordered_products = order.ordered_products
+      @products = @ordered_products.map { |ordered_product| ordered_product.product }
+    else
+      @rendered_products = nil
+    end
   end
 
   def create
