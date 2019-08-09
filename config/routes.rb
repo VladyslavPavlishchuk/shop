@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'pages/page'
   get 'pages/products' => 'user_products#index'
   post 'ordered_products' => 'orders#create'
+  delete 'user/cart/remove_product' => 'orders#remove_ordered_product'
 
   devise_for :users, controllers: {
       sessions: 'users/sessions',

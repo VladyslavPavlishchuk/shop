@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2019_08_07_111332) do
   create_table "discounts", force: :cascade do |t|
     t.integer "amount_type"
     t.integer "amount"
-    t.integer "discount_type"
-    t.integer "target_id"
+    t.integer "discounted_type"
+    t.integer "discounted_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,28 +1,47 @@
-<% products.each_with_index do |product,i|%>
-<div class="row mb-4">
-  <div class="col-10">
-    <div class="card mb-3 border-0" >
-      <div class="row no-gutters">
-        <div class="col-md-5" style="background: #868e96;">
-          <%= image_tag(product.image.url,class:'card-img-top h-100') %>
-        </div>
-        <div class="col-md-7">
-          <div class="card-body">
-            <h5 class="card-title"><%= product.name %></h5>
-            <p class="card-text d-inline"><%= product.description %></p>
-            <div class="card-footer">
-              <small>$<%= ordered_products[i].price %></small>
+<% if ordered_products == nil %>
+    <div class="w-100 h-100">
+      <h2> No orders </h2>
+      <h5 class="text-secondary"> Please, choose something </h5>
+   </div>
+<% else %>
+    <% products.each_with_index do |product,i|%>
+        <div class="row mb-4">
+          <div class="col-10">
+            <div class="card mb-3 border-0" >
+              <div class="row no-gutters">
+                <div class="col-md-5" style="background: #868e96;">
+                  <%= image_tag(product.image.url,class:'card-img-top h-100') %>
+                </div>
+                <div class="col-md-7">
+                  <div class="card-body">
+                    <span class="d-none"><%= ordered_products[i].id %></span>
+                    <h5 class="card-title"><%= product.name %></h5>
+                    <p class="card-text d-inline"><%= product.description %></p>
+                    <div class="card-footer">
+                      <small data-name="displayed_price">$<%= ordered_products[i].price %></small> x <small data-name="displayed_quontity"><%= ordered_products[i].quontity %></small>
+                      <% if ordered_products[i].discount%>
+                        <small>-  <%= ordered_products[i].discount.amount %>
+                          <% if ordered_products[i].discount.amount_type == :percent %>
+                            <small data-name="total_price">% = $<%= ordered_products[i].price * ordered_products[i].quontity - ordered_products[i].price/ 100 * ordered_products[i].discount.amount %></small>
+                          <% else %>
+                            <small data-name="total_price">$ = $<%= ordered_products[i].price * ordered_products[i].quontity - ordered_products[i].discount.amount %></small>
+                          <% end %>
+                        </small>
+                      <% else %>
+                        <small data-name="total_price"> = $<%= ordered_products[i].price * ordered_products[i].quontity%></small>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <div class="col-2 d-flex justify-content-center align-items-center">
+            <input type="number" value="1" min="1" max="100" class="form-control">
+            <button type="button" class="close align-self-start" aria-label="Remove_ordered_product">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-2 d-flex justify-content-center align-items-center">
-    <input type="number" value="1" min="1" max="100" class="form-control">
-    <button type="button" class="close align-self-start" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-</div>
+    <% end %>
 <% end %>

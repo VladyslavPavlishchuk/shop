@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :category
   has_many :orders
+  has_many :discounts, as: :discounted
 
   mount_uploader :image, ImageUploader
   validates :name, presence: true, length: { maximum: 50 }
