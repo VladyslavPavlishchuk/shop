@@ -1,0 +1,9 @@
+<% @orders.each do |order| %>
+    <p> <%= order.id %> </p>
+    <% order.ordered_products.each do |ordered_product|%>
+      <p><%= ordered_product.product.name %></p>
+      <p><%= ordered_product.quontity %></p>
+    <% end %>
+    <hr>
+    <br>
+<% end %>

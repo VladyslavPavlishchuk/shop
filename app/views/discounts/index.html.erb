@@ -1,0 +1,17 @@
+<% unless @discounts ==nil %>
+<% @discounts.each do |discount| %>
+    <p> <%= discount.id %> </p>
+    <p><%= discount.amount %> </p>
+    <p><%= discount.discounted_type %> </p>
+    <p><%= discount.discounted_id %> </p>
+    <hr>
+    <br>
+<% end %>
+<% end %>
+<%= form_with url: 'create' do |form| %>
+    <%= form.text_field :amount_type %>
+    <%= form.text_field :amount %>
+    <%= form.text_field :discounted_type %>
+    <%= form.text_field :discounted_id %>
+    <%= form.submit "Save"%>
+<% end %>

@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   get 'pages/products' => 'user_products#index'
   post 'ordered_products' => 'orders#create'
   delete 'user/cart/remove_product' => 'orders#remove_ordered_product'
+  patch 'user/order/submit' => 'orders#submit'
+  get 'admin/order/index' => 'orders#index'
+  delete 'user/order/delete' => 'orders#delete'
+  get 'admin/discounts/index' => 'discounts#index'
+  post 'admin/discounts/create' =>'discounts#create'
 
   devise_for :users, controllers: {
       sessions: 'users/sessions',

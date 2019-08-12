@@ -1,9 +1,3 @@
-<% if ordered_products == nil %>
-    <div class="w-100 h-100">
-      <h2> No orders </h2>
-      <h5 class="text-secondary"> Please, choose something </h5>
-   </div>
-<% else %>
     <% products.each_with_index do |product,i|%>
         <div class="row mb-4">
           <div class="col-10">
@@ -14,19 +8,19 @@
                 </div>
                 <div class="col-md-7">
                   <div class="card-body">
-                    <span class="d-none"><%= ordered_products[i].id %></span>
+                    <span class="d-none" id="ordered_product_id"><%= ordered_products[i].id %></span>
+                    <span class="d-none" id="order_id"><%= order.id %></span>
                     <h5 class="card-title"><%= product.name %></h5>
                     <p class="card-text d-inline"><%= product.description %></p>
                     <div class="card-footer">
                       <small data-name="displayed_price">$<%= ordered_products[i].price %></small> x <small data-name="displayed_quontity"><%= ordered_products[i].quontity %></small>
                       <% if ordered_products[i].discount%>
-                        <small>-  <%= ordered_products[i].discount.amount %>
-                          <% if ordered_products[i].discount.amount_type == :percent %>
-                            <small data-name="total_price">% = $<%= ordered_products[i].price * ordered_products[i].quontity - ordered_products[i].price/ 100 * ordered_products[i].discount.amount %></small>
-                          <% else %>
-                            <small data-name="total_price">$ = $<%= ordered_products[i].price * ordered_products[i].quontity - ordered_products[i].discount.amount %></small>
-                          <% end %>
-                        </small>
+                        <small data-name="discount" data-type="<%= ordered_products[i].discount.amount_type %>">-  <%= ordered_products[i].discount.amount %> </small>
+                        <% if ordered_products[i].discount.amount_type == "percent" %>
+                          <small data-name="total_price">% = $<%= ordered_products[i].price * ordered_products[i].quontity - ordered_products[i].price.to_f / 100 * ordered_products[i].discount.amount %></small>
+                        <% else %>
+                          <small data-name="total_price">$ = $<%= ordered_products[i].price * ordered_products[i].quontity - ordered_products[i].discount.amount %></small>
+                        <% end %>
                       <% else %>
                         <small data-name="total_price"> = $<%= ordered_products[i].price * ordered_products[i].quontity%></small>
                       <% end %>
@@ -44,4 +38,3 @@
           </div>
         </div>
     <% end %>
-<% end %>

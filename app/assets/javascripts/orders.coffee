@@ -11,7 +11,14 @@ sum_fields = (fields) ->
     sum = parseInt(sum,10) + parseInt(fields.eq(i).text().replace( /^\D+/g, ''),10)
   sum
 
+set_sum = ->
+  sum = sum_fields($('[data-name="total_price"]'))
+  $('#subtotal').text(sum)
+  $('#total').text(sum)
+
 $(document).on('turbolinks:load', ->
+  set_sum()
+
   $('#products_window').on('click', 'a:contains(+)',(event) ->
     event.preventDefault();
     $.ajax(
@@ -37,7 +44,7 @@ $(document).on('turbolinks:load', ->
       url: 'cart/remove_product'
       type: 'post'
       method: 'delete'
-      data: {id: get_closest_field(event,'.d-none').text()}
+      data: {id: get_closest_field(event,'#ordered_product_id').text()}
       success: ->
         $(event.target).closest(".row.mb-4").remove()
         $('#subtotal').text(parseInt($('#total').text().replace( /^\D+/g, ''),10)-parseInt(get_closest_field(event,'[data-name="total_price"]').text().replace( /^\D+/g, ''),10))
@@ -50,10 +57,44 @@ $(document).on('turbolinks:load', ->
   )
 
   $("[type='number']").on('change', ->
-    get_closest_field(event,'[data-name="displayed_quontity"]').text($(event.target).val())
-    get_closest_field(event, '[data-name="total_price"]').text(' = $'+parseInt(get_closest_field(event, '[data-name="displayed_price"]').text().replace( /^\D+/g, ''),10) * $(event.target).val())
-    rezult = sum_fields($('[data-name="total_price"]'))
-    $('#subtotal').text(rezult)
-    $('#total').text(rezult)
+    quontity = get_closest_field(event,'[data-name="displayed_quontity"]')
+    total = get_closest_field(event, '[data-name="total_price"]')
+    price = get_closest_field(event, '[data-name="displayed_price"]')
+    discount = get_closest_field(event, '[data-name="discount"]')
+    quontity.text($(event.target).val())
+
+    unless get_closest_field(event,'[data-name="discount"]').length
+      total.text(' = $'+parseInt(price.text().replace( /^\D+/g, ''),10) * $(event.target).val())
+
+    if get_closest_field(event, '[data-type="fixed"]').length
+      rezult = parseInt(price.text().replace( /^\D+/g, ''),10)*quontity.text() - parseInt(discount.text().replace( /^\D+/g, ''),10)
+      total.text("$ = $"+rezult)
+    else if get_closest_field(event, '[data-type="percent"]').length
+      rezult = parseInt(price.text().replace( /^\D+/g, ''),10)*quontity.text() - parseInt(price.text().replace( /^\D+/g, ''),10)*quontity.text() / 100 * parseInt(discount.text().replace( /^\D+/g, ''),10)
+      total.text("% = $"+rezult)
+
+    set_sum()
+  )
+
+  $('button:contains("Next")').on('click', ->
+    $.ajax(
+      url: 'order/submit'
+      type: 'post'
+      method: 'patch'
+      data: {order_id: $('#order_id').text(), quontities: $('input[type="number"]').map( (key,value) ->  value.value).get()}
+      success: ->
+        window.location.replace("localhost:3000");
+    )
+  )
+
+  $('button:contains("Cancel")').on('click', ->
+    $.ajax(
+      url: 'order/delete'
+      type: 'post'
+      method: 'delete'
+      data: {order_id: $('#order_id').text()}
+      success: ->
+        window.location.replace("localhost:3000");
+    )
   )
 );
