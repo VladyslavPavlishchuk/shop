@@ -82,8 +82,6 @@ $(document).on('turbolinks:load', ->
       type: 'post'
       method: 'patch'
       data: {order_id: $('#order_id').text(), quontities: $('input[type="number"]').map( (key,value) ->  value.value).get()}
-      success: ->
-        window.location.replace("localhost:3000");
     )
   )
 
@@ -93,8 +91,6 @@ $(document).on('turbolinks:load', ->
       type: 'post'
       method: 'delete'
       data: {order_id: $('#order_id').text()}
-      success: ->
-        window.location.replace("localhost:3000");
     )
   )
 );

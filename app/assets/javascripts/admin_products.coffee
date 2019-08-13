@@ -7,6 +7,12 @@ $(document).on('turbolinks:load', ->
   $(".custom_edit_form").hide();
   $(".custom_edit_form").find(".custom_error_field").hide();
 
+  console.log(window.location.href == "http://localhost:3000/users/edit")
+
+  if window.location.href == "http://localhost:3000/users/edit"
+    $('#navigation_menu .active').removeClass('active')
+    $('#navigation_menu a:contains("Profile")').addClass('active')
+
   get_text = (label_tag, event) ->
     $(event.target.parentNode).siblings().find(label_tag).text();
 
@@ -30,7 +36,6 @@ $(document).on('turbolinks:load', ->
       type: 'get'
       success: (response) ->
         resp = JSON.parse(response)
-        console.log(resp)
         for i in [0..response.length-2]
           $('.custom_table tr:last td').eq(i).append("<p class='"+Object.keys(resp)[i]+"'>"+Object.values(resp)[i]+"</p>")
         edit_field('.custom_table', -2).empty()
@@ -47,7 +52,6 @@ $(document).on('turbolinks:load', ->
       type: 'get'
       data: {id: id}
       success: (response) ->
-        console.log(response)
         resp = JSON.parse(response)
 
         for i in [0..cols.length-2]

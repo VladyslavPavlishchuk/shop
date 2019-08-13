@@ -23,7 +23,6 @@ class AdminProductsController < ApplicationController
   end
 
   def create
-    p params
     created = Product.new(params.permit(:name, :price, :category_id, :description, :image))
     created.save!
     respond_to do |format|
@@ -39,7 +38,7 @@ class AdminProductsController < ApplicationController
   def delete
     for_delete = Product.find_by id: params[:id]
     if for_delete == nil
-      p for_delete.errors.add(:id, "not found")
+      for_delete.errors.add(:id, "not found")
     else
       for_delete.destroy
     end
@@ -54,7 +53,6 @@ class AdminProductsController < ApplicationController
   end
 
   def update
-    p params
     updated = Product.update(params[:id],{name: params[:name], price: params[:price],
                                                       category_id: params[:category_id], description: params[:description],
                                                       image: params[:image]})
