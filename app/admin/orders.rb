@@ -2,7 +2,7 @@ ActiveAdmin.register Order do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :id, :user_id, :status, ordered_products_attributes: [:id, :order_id, :product_id, :discount_id, :quontity, :price, :_destroy]
+  permit_params :id, :user_id, :status, ordered_products_attributes: [:id, :order_id, :product_id, :discount_id, :quontity, :price, :_destroy]
 #
 #
 # or
@@ -13,21 +13,27 @@ ActiveAdmin.register Order do
 #   permitted
 # end
 
- form do |f|
-  f.inputs 'Details' do
+  form do |f|
+    f.inputs 'Details' do
 
-   f.input :user
-   f.input :status, label: 'Status:'
+      f.input :user
+      f.input :status, label: 'Status:'
+    end
+    f.inputs do
+      f.has_many :ordered_products, heading: 'Products in order',
+                 allow_destroy: true do |a|
+        a.input :product
+        a.input :discount_id
+        a.input :quontity
+        a.input :price
+      end
+    end
+    f.actions
   end
-  f.inputs do
-   f.has_many :ordered_products, heading: 'Products in order',
-              allow_destroy: true do |a|
-    a.input :product
-    a.input :discount_id
-    a.input :quontity
-    a.input :price
-   end
+
+  csv do
+    column :id, label: 'Order id:'
+    column(:products) { |order| order.ordered_products.map { |ordered_product| "#{ordered_product.product.name} - #{OrderedProduct::CalculateFinalPrice.(ordered_product: ordered_product)["final_price"]}$" }.join('/') }
   end
-  f.actions
- end
+
 end
