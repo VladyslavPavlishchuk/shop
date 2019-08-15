@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users, ActiveAdmin::Devise.config
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root to: 'pages#index'
 
   get '/admin/users' => 'users_administration#index'
@@ -30,11 +33,11 @@ Rails.application.routes.draw do
   get 'admin/discounts/index' => 'discounts#index'
   post 'admin/discounts/create' =>'discounts#create'
 
-  devise_for :users, controllers: {
-      sessions: 'users/sessions',
-      registrations: 'users/registrations',
-      passwords: 'users/passwords',
-  }
+  # devise_for :users, controllers: {
+  #     sessions: 'users/sessions',
+  #     registrations: 'users/registrations',
+  #     passwords: 'users/passwords',
+  # }
 
   devise_scope :user do
     get 'current' => 'users/sessions#current'

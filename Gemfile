@@ -9,12 +9,14 @@ gem 'rails', '~> 5.2.3'
 gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 gem 'trailblazer'
 gem 'trailblazer-rails'
+gem 'whenever', require: false
 gem 'remotipart', '~> 1.3.1'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'font-awesome-sass', '~> 5.9.0'
 gem 'bootstrap', '~> 4.3.1'
+gem 'activeadmin'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

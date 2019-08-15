@@ -35,3 +35,4 @@ products.size.times do |count|
                  description: "This is #{products[count]}.", category_id: get_category(count))
 end
 
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
