@@ -36,4 +36,19 @@ ActiveAdmin.register Order do
     column(:products) { |order| order.ordered_products.map { |ordered_product| "#{ordered_product.product.name} - #{OrderedProduct::CalculateFinalPrice.(ordered_product: ordered_product)["final_price"]}$" }.join('/') }
   end
 
+  controller do
+    def update(options={}, &block)
+      order = Order.find(params[:id])
+
+      unless order.status == params[:order][:status]
+        MailerWorker.perform_async(current_user.email, order.id, params[:order][:status])
+      end
+
+      super do |success, failure|
+        block.call(success, failure) if block
+        failure.html { render :edit }
+      end
+    end
+  end
+
 end
