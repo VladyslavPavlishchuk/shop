@@ -6,6 +6,10 @@ COPY Gemfile /shop/Gemfile
 COPY Gemfile.lock /shop/Gemfile.lock
 RUN gem install bundler
 RUN bundle install
+RUN apt-get install curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x
+RUN apt-get install nodejs
+RUN apt-get -y install yarn
 COPY . /shop
 
 # Add a script to be executed every time the container starts.

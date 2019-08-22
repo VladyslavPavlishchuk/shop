@@ -16,6 +16,7 @@ gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'font-awesome-sass', '~> 5.9.0'
 gem 'bootstrap', '~> 4.3.1'
+gem 'webpacker', '~> 4.x'
 gem 'activeadmin'
 gem 'pg'
 group :development, :test do
