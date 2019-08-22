@@ -65,7 +65,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
   config.action_mailer.default_url_options = {:host => "localhost", :port => '3000', :protocol => "http"}
   config.action_mailer.preview_path = "#{Rails.root}/tmp/mailers/previews"
-  config.cache_store = :redis_store, 'redis://localhost:6379/'
+  config.cache_store = :redis_store, 'redis://redis:6379'
 
   config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
