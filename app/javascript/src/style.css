@@ -6,7 +6,6 @@
     border-radius: 1em;
     background-color: white;
 }
-
 .custom_registration_error {
     border-style: inset;
     border-width: 0.1em;
@@ -15,7 +14,6 @@
     border-radius: 1em 1em 0em 0em;
     background-color: white;
 }
-
 .custom_login {
     border-style: inset;
     border-width: 0.1em;
@@ -24,7 +22,6 @@
     border-radius: 1em;
     background-color: white;
 }
-
 .custom_login_error {
     border-style: inset;
     border-width: 0.1em;
@@ -33,7 +30,6 @@
     border-radius: 1em 1em 0em 0em;
     background-color: white;
 }
-
 .custom_buttons {
     display: flex;
     flex-flow: row wrap;
@@ -42,26 +38,20 @@
     align-content: center;
     margin-bottom: 2em;
 }
-
-.custom_container > {
-img {
+.custom_container > img {
     width: 12em;
     height: 6em;
     display: flex;
     margin: auto;
 }
-input {
-&[type=email], &[type=password], &[type=text] {
-                                      width: 100%;
-                                      min-width: 17em;
-                                      height: 2em;
-                                      background-color: #EFEFEF;
-                                      border-radius: 0.3em;
-                                      margin-bottom: 1.6em;
-                                  }
+.custom_container > input[type=email], .custom_container > input[type=password], .custom_container > input[type=text] {
+    width: 100%;
+    min-width: 17em;
+    height: 2em;
+    background-color: #efefef;
+    border-radius: 0.3em;
+    margin-bottom: 1.6em;
 }
-}
-
 .custom_blue_btn {
     background-color: royalblue;
     border-radius: 0.5em;
@@ -71,9 +61,8 @@ input {
     color: white;
     font-size: 1.4em;
 }
-
 .custom_grey_btn {
-    background-color: #EFEFEF;
+    background-color: #efefef;
     color: black;
     font: normal 12px arial, sans-serif;
     padding: 0.5em 0.9em;
@@ -81,50 +70,44 @@ input {
     margin-right: 1em;
     text-decoration: none;
     border-radius: 0.5em;
-    border: outset #EFEFEF 0.1em;
+    border: outset #efefef 0.1em;
     cursor: default;
     font-size: 1.4em;
 }
-
 .custom_registration > h2, .login > h2 {
     font-size: 2.3em;
 }
-
 .custom_error {
     display: flex;
-    background-color: #DF013A;
+    background-color: #df013a;
     color: white;
     font-size: medium;
     border-radius: 0em;
     height: 1.2em;
     border-style: inset;
     border-width: 0em 0.05em 0.05em 0.05em;
-> li {
+}
+.custom_error > li {
     list-style-type: none;
     margin-left: 1.5em;
 }
-}
-
 .custom_redact_background {
     width: 30%;
     height: auto;
-> {
-.custom_form1 {
+}
+.custom_redact_background > .custom_form1 {
     padding: 0.2em 0.7em 0.7em 0.2em;
     border-style: hidden;
     justify-content: space-around;
     display: flex;
     flex-flow: wrap column;
 }
-.custom_form {
+.custom_redact_background > .custom_form {
     padding: 0.2em 0.7em 0.7em 0.2em;
     border-style: hidden;
     display: flex;
     flex-flow: wrap column;
 }
-}
-}
-
 .custom_table {
     background-color: white;
     border-radius: 1em;
@@ -132,33 +115,27 @@ input {
     border-collapse: collapse;
     table-layout: fixed;
 }
-
 .custom_row, .custom_edit_row {
     border-bottom: solid 0.1em rgba(185, 179, 186, 0.56);
     font-size: 1.5em;
 }
-
 .custom_on_click_row {
-    background-color: #CCC3FF;
+    background-color: #ccc3ff;
     border-bottom: solid 0.1em rgba(185, 179, 186, 0.56);
     font-size: 1.5em;
 }
-
 .custom_table_header {
     background-color: #817dff;
     font-size: 1.5em;
     color: white;
     word-wrap: break-word;
 }
-
 .custom_left_header_row {
     border-radius: 0.6em 0em 0em 0em;
 }
-
 .custom_right_header_row {
     border-radius: 0em 0.6em 0em 0em;
 }
-
 .custom_purple_btn {
     background-color: #817dff;
     border-radius: 0.5em;
@@ -169,15 +146,12 @@ input {
     font-size: 1em;
     margin: 0.1em;
 }
-
 .custom_visible {
     visibility: visible;
 }
-
 .custom_invisible {
     visibility: collapse;
 }
-
 .custom_big_purple_btn {
     background-color: #817dff;
     border-radius: 0.5em;
@@ -188,17 +162,14 @@ input {
     font-size: 1.7em;
     margin: auto;
 }
-
 .custom_category_field {
     width: 25%;
     text-align: center;
     word-wrap: break-word;
 }
-
 .custom_edit_field {
     margin-left: 0.5em;
 }
-
 .custom_edit_form {
     display: flex;
     flex-flow: row wrap;
@@ -209,32 +180,27 @@ input {
     border-collapse: collapse;
     font-size: 1.5em;
 }
-
 .custom_small_field {
     width: 22%;
     margin: 0.2em;
 }
-
 .custom_medium_field {
     width: 48%;
     margin: 0.2em;
 }
-
 .custom_error_field {
     background-color: #fc0100;
     width: 100%;
     text-align: center;
-> p {
+}
+.custom_error_field > p {
     margin: 0em;
     padding: 0em;
 }
-}
-
 .custom_big_field {
     width: 100%;
     margin: 0.2em;
 }
-
 .custom_user_edit_form {
     border-color: black;
     border-style: solid;
@@ -243,7 +209,6 @@ input {
     flex-flow: row wrap;
     background-color: white;
 }
-
 .custom_users_table {
     border-color: black;
     border-style: solid;
@@ -251,14 +216,13 @@ input {
     padding: 1em;
     background-color: #b7c6fc;
 }
-
 .body {
-  background-color: #CCCCCC;
-  font-size: 62.5%;
-  display: flex;
-  flex-flow: column wrap;
-  align-content: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+    background-color: #ccc;
+    font-size: 62.5%;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }

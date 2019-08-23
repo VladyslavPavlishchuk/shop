@@ -14,5 +14,9 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+//= import jquery3
+//= import rails-ujs
+//= import jquery.remotipart
+//= import turbolinks
+//= require_tree .
 
-console.log('Hello World from Webpacker')

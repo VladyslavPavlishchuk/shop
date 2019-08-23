@@ -1,3 +1,4 @@
+<%= stylesheet_pack_tag 'style' %>
 <div class=".body">
 <%if user_signed_in? && current_user['role'] === 'admin'%>
     <div class = "custom_redact_background" id = "categories_table">
@@ -20,3 +21,5 @@
     <%= render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found %>
 <% end %>
 </div>
+
+<%= javascript_pack_tag 'admin_categories' %>
