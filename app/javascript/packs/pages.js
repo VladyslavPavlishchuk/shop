@@ -1,10 +1,10 @@
-//= import popper
-//= import bootstrap
-//= import bootstrap-sprockets
-//= import jquery3
-//= import rails-ujs
-//= import jquery.remotipart
-//= import activestorage
+//= import 'popper'
+//= import 'bootstrap'
+//= import 'bootstrap-sprockets'
+//= import 'jquery3'
+//= import 'rails-ujs'
+//= import 'jquery.remotipart'
+//= import 'activestorage'
 
 $(document).on('turbolinks:load', () => $('#categories_list li').on('click', event => $.ajax({
     url: 'pages/products',

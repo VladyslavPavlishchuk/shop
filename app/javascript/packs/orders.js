@@ -4,13 +4,13 @@
  * DS202: Simplify dynamic range loops
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-//= import popper
-//= import bootstrap
-//= import bootstrap-sprockets
-//= import jquery3
-//= import rails-ujs
-//= import jquery.remotipart
-//= import activestorage
+//= import 'popper'
+//= import 'bootstrap'
+//= import 'bootstrap-sprockets'
+//= import 'jquery3'
+//= import 'rails-ujs'
+//= import 'jquery.remotipart'
+//= import 'activestorage'
 
 const get_closest_field = (event, field) => $(event.target).closest('.row.mb-4').find(field);
 

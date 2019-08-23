@@ -19,4 +19,5 @@
 //= import jquery.remotipart
 //= import turbolinks
 //= require_tree .
-
+const $ = require('jquery');
+global.$ = global.jQuery = $;
