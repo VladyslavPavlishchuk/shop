@@ -6,14 +6,18 @@
 //= import 'jquery.remotipart'
 //= import 'activestorage'
 
-$(document).on('turbolinks:load', () => $('#categories_list li').on('click', event => $.ajax({
-    url: 'pages/products',
-    type: 'get',
-    data: {id: $(event.target.parentNode).find('p').text()},
-    dataType: 'html',
-    success(data) {
-        $(event.target.parentNode.parentNode).find('li').removeClass('active');
-        $(event.target).addClass('active');
-        return $('#products_window').html(data);
-    }
-})));
+import 'bootstrap/dist/css/bootstrap'
+require('bootstrap');
+import Vue from 'vue/dist/vue.esm'
+import ShopContainer from '../vue/components/home/ShopContainer.vue'
+
+document.addEventListener('DOMContentLoaded', () => {
+    const node = document.getElementById('vue_container');
+    const props = JSON.parse(node.getAttribute('data'));
+
+    // Render component with props
+    new Vue({
+        render: h => h(ShopContainer, { props })
+    }).$mount('#vue_container');
+})
+

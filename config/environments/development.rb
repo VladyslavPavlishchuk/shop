@@ -76,4 +76,5 @@ Rails.application.configure do
       authentication:       :plain,
       enable_starttls_auto: true
   }
+  config.web_console.whitelisted_ips = '192.168.0.0/16'
 end
