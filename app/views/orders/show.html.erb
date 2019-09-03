@@ -1,69 +1,13 @@
 <%= stylesheet_pack_tag 'application' %>
+<%= javascript_pack_tag 'orders' %>
 <div class="container">
   <div class="row mb-5">
     <div class="col-12">
       <%= render partial:'shared/navigation' %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-9">
-      <div class="row border-bottom mr-1">
-        <div class="col-12">
-          <h3 class="text-muted">Shopping cart</h3>
-        </div>
-      </div>
-      <% if @ordered == nil %>
-          <div class="w-100 h-100">
-            <h2> No orders </h2>
-            <h5 class="text-secondary"> Please, choose something </h5>
-          </div>
-      <% else %>
-        <%= render partial: 'shared/cart_product_card', locals: {ordered_products: @ordered.ordered_products, products: @products, order: @ordered}  %>
-      <% end %>
-      <div class="row border-top mb-5 pt-3">
-        <div class="col-12">
-          <button type="button" class="btn btn-primary w-25">Next</button>
-          <button type="button" class="btn btn-light w-25 ml-3">Cancel</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="navbar sticky-top w-100 pr-0">
-      <div class="row w-100">
-        <div class="cal-12 w-100 ">
-          <h3 class="text-muted w-100">Summary</h3>
-        </div>
-      </div>
-      <div class="row w-100">
-        <div class="cal-12 border-top border-bottom w-100">
-          <input type="text" class="form-control-plaintext font-weight-bold w-100" placeholder="ENTER COUPON CODE">
-        </div>
-      </div>
-      <div class="row w-100">
-        <div class="cal-12 border-bottom w-100">
-          <div class="row w-100 m-0">
-            <div class="col-12 w-100 p-0">
-              <p class="text-muted d-inline">SUBTOTAL</p>
-              <p class="text-muted d-inline float-right" id="subtotal">$0</p>
-            </div>
-          </div>
-          <div class="row w-100 m-0">
-            <div class="col-12 w-100 p-0">
-              <p class="text-muted d-inline">SHIPPING</p>
-              <p class="text-muted d-inline float-right">FREE</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row w-100">
-        <div class="cal-12 w-100">
-          <h3 class="text-muted d-inline">TOTAL</h3>
-          <h3 class="text-muted d-inline float-right" id="total">$0</h3>
-        </div>
-      </div>
-    </div>
-    </div>
-  </div>
+    <%= content_tag :div, id: "cart_container", data: {products: @products, order: @order}.to_json do %>
+    <% end %>
 </div>
 
-<%= javascript_pack_tag 'orders' %>
+

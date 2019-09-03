@@ -6,6 +6,6 @@
       <%= render partial:'shared/navigation' %>
     </div>
   </div>
-  <%= content_tag :div, id: "vue_container", data: {categories:@categories, products:@products}.to_json do %>
+  <%= content_tag :div, id: "cart_container", data: {categories:@categories, products:@products}.to_json do %>
   <% end %>
 </div>

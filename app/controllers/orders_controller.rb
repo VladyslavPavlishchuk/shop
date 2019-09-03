@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
   def show
     order = Order.find_by(user_id: current_user[:id], status: :cart)
     if order
-      @ordered = order
-      @products = @ordered.ordered_products.map { |ordered_product| ordered_product.product }
+      @order = order
+      @products = @order.ordered_products.map { |ordered_product| ordered_product.product }
     else
       @rendered_products = nil
     end

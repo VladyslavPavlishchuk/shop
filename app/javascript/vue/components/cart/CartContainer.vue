@@ -1,0 +1,92 @@
+<template>
+    <div class="row">
+        <card_container content = 'data'></card_container>
+        <summary_price></summary_price>
+    </div>
+</template>
+<script>
+    import Vue from 'vue/dist/vue.esm'
+    import card_container from './CardContainer.vue'
+    import summary_price from './Summary.vue'
+
+    export default {
+        components: {
+            card_container,
+            summary_price},
+        name: 'cart_container',
+        props: ['data'],
+        methods:{
+//            const get_closest_field = (event, field) => $(event.target).closest('.row.mb-4').find(field);
+//
+//    const sum_fields = function(fields) {
+//        let sum=0;
+//        for (let i = 0, end = fields.length-1, asc = 0 <= end; asc ? i <= end : i >= end; asc ? i++ : i--) {
+//            sum = parseInt(sum,10) + parseInt(fields.eq(i).text().replace( /^\D+/g, ''),10);
+//        }
+//        return sum;
+//    };
+//
+//    const set_sum = function() {
+//        const sum = sum_fields($('[data-name="total_price"]'));
+//        $('#subtotal').text(sum);
+//        return $('#total').text(sum);
+//    };
+//
+//
+//    set_sum();
+//
+//    $('[aria-label="Remove_ordered_product"]').on('click', function(event) {  $.ajax({
+//        url: 'cart/remove_product',
+//        type: 'post',
+//        method: 'delete',
+//        data: {id: get_closest_field(event,'#ordered_product_id').text(), authenticity_token: $('meta[name="csrf-token"]').attr('content')},
+//        success() {
+//            $(event.target).closest(".row.mb-4").remove();
+//            $('#subtotal').text(parseInt($('#total').text().replace( /^\D+/g, ''),10)-parseInt(get_closest_field(event,'[data-name="total_price"]').text().replace( /^\D+/g, ''),10));
+//            return $('#total').text(parseInt($('#total').text().replace( /^\D+/g, ''),10)-parseInt(get_closest_field(event,'[data-name="total_price"]').text().replace( /^\D+/g, ''),10));
+//        }
+//    })});
+//
+//    $("[type='number']").keypress( evt => evt.preventDefault());
+//
+//    $("[type='number']").on('change', function() {
+//        let rezult;
+//        const quontity = get_closest_field(event,'[data-name="displayed_quontity"]');
+//        const total = get_closest_field(event, '[data-name="total_price"]');
+//        const price = get_closest_field(event, '[data-name="displayed_price"]');
+//        const discount = get_closest_field(event, '[data-name="discount"]');
+//        quontity.text($(event.target).val());
+//
+//        if (!get_closest_field(event,'[data-name="discount"]').length) {
+//            total.text(' = $'+(parseInt(price.text().replace( /^\D+/g, ''),10) * $(event.target).val()));
+//        }
+//
+//        if (get_closest_field(event, '[data-type="fixed"]').length) {
+//            rezult = (parseInt(price.text().replace( /^\D+/g, ''),10)*quontity.text()) - parseInt(discount.text().replace( /^\D+/g, ''),10);
+//            total.text("$ = $"+rezult);
+//        } else if (get_closest_field(event, '[data-type="percent"]').length) {
+//            rezult = (parseInt(price.text().replace( /^\D+/g, ''),10)*quontity.text()) - (((parseInt(price.text().replace( /^\D+/g, ''),10)*quontity.text()) / 100) * parseInt(discount.text().replace( /^\D+/g, ''),10));
+//            total.text("% = $"+rezult);
+//        }
+//
+//        return set_sum();
+//    });
+//
+//    $('button:contains("Next")').on('click', function() { $.ajax({
+//        url: 'order/submit',
+//        type: 'post',
+//        method: 'patch',
+//        data: {order_id: $('#order_id').text(), quontities: $('input[type="number"]').map( (key, value) => value.value).get(), authenticity_token: $('meta[name="csrf-token"]').attr('content')}
+//    })});
+//
+//    $('button:contains("Cancel")').on('click', function() { $.ajax({
+//        url: 'order/delete',
+//        type: 'post',
+//        method: 'delete',
+//        data: {order_id: $('#order_id').text(), authenticity_token: $('meta[name="csrf-token"]').attr('content')}
+//    })});
+    }
+
+    }
+
+</script>

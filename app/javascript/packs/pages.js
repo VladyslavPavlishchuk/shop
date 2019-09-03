@@ -19,5 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
     new Vue({
         render: h => h(ShopContainer, { props })
     }).$mount('#vue_container');
-})
+});
 
