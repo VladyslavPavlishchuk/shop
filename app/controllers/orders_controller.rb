@@ -3,9 +3,9 @@ class OrdersController < ApplicationController
     order = Order.find_by(user_id: current_user[:id], status: :cart)
     if order
       @order = order
+      @ordered_products = @products = @order.ordered_products
       @products = @order.ordered_products.map { |ordered_product| ordered_product.product }
-    else
-      @rendered_products = nil
+      @discounts = @ordered_products.map{ |ordered_product| ordered_product.discount }
     end
   end
 

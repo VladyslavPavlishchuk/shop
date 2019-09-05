@@ -6,8 +6,6 @@
       <%= render partial:'shared/navigation' %>
     </div>
   </div>
-    <%= content_tag :div, id: "cart_container", data: {products: @products, order: @order}.to_json do %>
+    <%= content_tag :div, id: "cart_container", data: {products: @products, order: @order, ordered_products: @ordered_products, discounts: @discounts}.to_json do %>
     <% end %>
 </div>
-
-

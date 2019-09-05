@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
     import Vue from 'vue/dist/vue.esm'
     import products_container from './ProductsContainer.vue'
     import categories_container from './CategoriesContainer.vue'

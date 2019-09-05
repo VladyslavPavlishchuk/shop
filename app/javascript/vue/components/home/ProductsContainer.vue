@@ -8,6 +8,7 @@
     </div>
 </template>
 <script>
+
     import product_card from './Product.vue'
     export default {
         name: "products-container",

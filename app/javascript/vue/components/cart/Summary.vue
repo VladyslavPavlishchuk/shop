@@ -16,7 +16,7 @@
                     <div class="row w-100 m-0">
                         <div class="col-12 w-100 p-0">
                             <p class="text-muted d-inline">SUBTOTAL</p>
-                            <p class="text-muted d-inline float-right" id="subtotal">$0</p>
+                            <p class="text-muted d-inline float-right" id="subtotal">${{ sum }}</p>
                         </div>
                     </div>
                     <div class="row w-100 m-0">
@@ -30,7 +30,7 @@
             <div class="row w-100">
                 <div class="cal-12 w-100">
                     <h3 class="text-muted d-inline">TOTAL</h3>
-                    <h3 class="text-muted d-inline float-right" id="total">$0</h3>
+                    <h3 class="text-muted d-inline float-right" id="total">${{ sum }}</h3>
                 </div>
             </div>
         </div>
@@ -40,9 +40,14 @@
 <script>
     export default {
         name: "summary_price",
-        methods: {
-            quontityChanged: function (id) {
-                return this.$emit('quontity-changed', id)
+        props: ['ordered_products'],
+        computed:{
+            sum: function () {
+                let sum = 0;
+                this.ordered_products.forEach(function(product){
+                    sum += product.price * product.quontity
+                })
+                return sum
             }
         }
     }

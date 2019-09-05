@@ -5,15 +5,11 @@
                 <h3 class="text-muted">Shopping cart</h3>
             </div>
         </div>
-        <card product_data="product" order_data="order" v-for="product in products" v-if="content.order"></card>
-        <div class='w-100 h-100' v-else>
-            <h2> No orders </h2>
-            <h5 class="text-secondary"> Please, choose something </h5>
-        </div>
+        <card v-for="ordered_product in ordered_products" v-bind:content="ordered_product" v-on:remove-pressed="removePressed" v-on:quontity-changed="quontityChanged"></card>
         <div class="row border-top mb-5 pt-3">
-            <div class="col-12" v-if="content.order">
-                <button type="button" class="btn btn-primary w-25">Next</button>
-                <button type="button" class="btn btn-light w-25 ml-3">Cancel</button>
+            <div class="col-12">
+                <button type="button" class="btn btn-primary w-25" @click.prevent="$emit('next-clicked')">Next</button>
+                <button type="button" class="btn btn-light w-25 ml-3" @click.prevent="$emit('cancel-clicked')">Cancel</button>
             </div>
         </div>
     </div>
@@ -21,14 +17,16 @@
 
 <script>
     import card from './Card.vue'
-
     export default {
         name: "card_container",
-        props: ['products','order'],
+        props: ['ordered_products'],
         components: {card},
         methods: {
-            quontityChanged: function (id) {
-                return this.$emit('quontity-changed', id)
+            removePressed: function (id) {
+                return this.$emit('remove-pressed', id)
+            },
+            quontityChanged: function (val, id) {
+                return this.$emit('quontity-pressed', val, id)
             }
         }
     }

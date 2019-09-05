@@ -1,30 +1,19 @@
 <template>
-    <% products.each_with_index do |product,i|%>
     <div class="row mb-4">
         <div class="col-10">
             <div class="card mb-3 border-0" >
                 <div class="row no-gutters">
                     <div class="col-md-5">
-                        <img v-bind:src="product.image.url" class="card-img-top h-100">
+                        <img v-bind:src="content.product.image.url" class="card-img-top h-100">
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
-                            <span class="d-none" id="ordered_product_id"><%= ordered_products[i].id %></span>
-                            <span class="d-none" id="order_id"><%= order.id %></span>
-                            <h5 class="card-title"><%= product.name %></h5>
-                            <p class="card-text d-inline"><%= product.description %></p>
+                            <h5 class="card-title">{{ content.product.name }}</h5>
+                            <p class="card-text d-inline">{{ content.product.description }}</p>
                             <div class="card-footer">
-                                <small data-name="displayed_price">$<%= ordered_products[i].price %></small> x <small data-name="displayed_quontity"><%= ordered_products[i].quontity %></small>
-                                <% if ordered_products[i].discount %>
-                                <small data-name="discount" data-type="<%= ordered_products[i].discount.amount_type %>">-  <%= ordered_products[i].discount.amount %> </small>
-                                <% if ordered_products[i].discount.amount_type == "percent" %>
-                                <small data-name="total_price">% = $<%= OrderedProduct::CalculateFinalPrice.(ordered_product: ordered_products[i])["final_price"] %></small>
-                                <% else %>
-                                <small data-name="total_price">$ = $<%= OrderedProduct::CalculateFinalPrice.(ordered_product: ordered_products[i])["final_price"] %></small>
-                                <% end %>
-                                <% else %>
-                                <small data-name="total_price"> = $<%= OrderedProduct::CalculateFinalPrice.(ordered_product: ordered_products[i])["final_price"] %></small>
-                                <% end %>
+                                <small data-name="displayed_price">${{ content.price }}</small> x <small>{{ quontity }}</small>
+                                <small v-if="content.discount">-  {{ content.discount.amount }} </small>
+                                <small data-name="total_price">{{ calculateFinalPrice(quontity) }}</small>
                             </div>
                         </div>
                     </div>
@@ -32,22 +21,42 @@
             </div>
         </div>
         <div class="col-2 d-flex justify-content-center align-items-center">
-            <input type="number" value="1" min="1" max="100" class="form-control">
-            <button type="button" class="close align-self-start" aria-label="Remove_ordered_product">
+            <input type="number" value="1" min="1" max="100" class="form-control" v-on:keydown.prevent="" v-model.number="quontity" @change="quontityChanged(quontity)">
+            <button type="button" class="close align-self-start" aria-label="Remove_ordered_product" v-on:click="removePressed">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
     </div>
-    <% end %>
 </template>
 
 <script>
     export default {
+        data: function () {
+            return {
+                quontity: 1
+            }
+        },
         name: "card",
-        props: ['products_data','order_data'],
+        props: ['content'],
         methods: {
-            quontityChanged: function (id) {
-                return this.$emit('quontity-changed', id)
+            calculateFinalPrice: function (quontity) {
+                const sumPrice = this.content.price * quontity
+                if (this.content.discount){
+                    if (isPercentDiscount){
+                        return "% = $"+(sumPrice-sumPrice/100*this.content.discount.amount)}
+                    else{
+                        return "$ = $"+(sumPrice-this.content.discount.amount)}}
+                else{
+                    return " = $"+sumPrice}
+            },
+            isPercentDiscount: function () {
+                return this.content.discount.amount_type == 'percent'
+            },
+            removePressed: function () {
+                return this.$emit('remove-pressed', this.content.id)
+            },
+            quontityChanged: function (val) {
+                return this.$emit('quontity-changed', val, this.content.id)
             }
         }
     }
