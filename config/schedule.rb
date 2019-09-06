@@ -17,10 +17,4 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-set :output, {:error => '~/Desktop/z.error.log', :standard => '~/Desktop/z.standard.log'}
-
-every :minute do
-  runner "Order.find_by(status: :cart).where('created_at < ?', 1.minute.ago)"
-end
-
 # Learn more: http://github.com/javan/whenever
