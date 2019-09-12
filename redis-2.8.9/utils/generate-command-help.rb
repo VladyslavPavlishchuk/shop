@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 GROUPS = [
   "generic",
@@ -15,12 +16,12 @@ GROUPS = [
 ].freeze
 
 GROUPS_BY_NAME = Hash[*
-  GROUPS.each_with_index.map do |n,i|
-    [n,i]
+  GROUPS.each_with_index.map do |n, i|
+    [n, i]
   end.flatten
 ].freeze
 
-def argument arg
+def argument(arg)
   name = arg["name"].is_a?(Array) ? arg["name"].join(" ") : arg["name"]
   name = arg["enum"].join "|" if "enum" == arg["type"]
   name = arg["command"] + " " + name if arg["command"]
@@ -33,7 +34,7 @@ def argument arg
   name
 end
 
-def arguments command
+def arguments(command)
   return "-" unless command["arguments"]
   command["arguments"].map do |arg|
     argument arg
@@ -63,11 +64,11 @@ end
 def generate_groups
   GROUPS.map do |n|
     "\"#{n}\""
-  end.join(",\n    ");
+  end.join(",\n    ")
 end
 
 def generate_commands
-  commands.to_a.sort do |x,y|
+  commands.to_a.sort do |x, y|
     x[0] <=> y[0]
   end.map do |key, command|
     group = GROUPS_BY_NAME[command["group"]]
@@ -110,4 +111,3 @@ struct commandHelp {
 
 #endif
 HELP_H
-

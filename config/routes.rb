@@ -33,14 +33,16 @@ Rails.application.routes.draw do
   get 'admin/discounts/index' => 'discounts#index'
   post 'admin/discounts/create' =>'discounts#create'
 
+  get 'admin/order_categories' => 'admin_categories#order_priorities'
+
   # devise_for :users, controllers: {
   #     sessions: 'users/sessions',
   #     registrations: 'users/registrations',
   #     passwords: 'users/passwords',
   # }
 
-  devise_scope :user do
-    get 'current' => 'users/sessions#current'
-  end
+  # devise_scope :user do
+  #   get 'current' => 'users/sessions#current'
+  # end
 
 end

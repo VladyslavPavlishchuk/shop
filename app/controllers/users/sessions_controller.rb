@@ -26,6 +26,6 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def current
-    render json: {id: current_user['id']}
+    render json: { id: current_user["id"] }
   end
 end

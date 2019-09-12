@@ -35,4 +35,7 @@ products.size.times do |count|
                  description: "This is #{products[count]}.", category_id: get_category(count))
 end
 
+Product.create(name: "Whiskey", price: 115,
+               description: "This is whiskey.", category_id: 3, image:'/images/thumb_whiskey.png')
+
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Discount < ApplicationRecord
   enum amount_type: [:percent, :fixed]
   enum discount_type: [:product, :user, :category]

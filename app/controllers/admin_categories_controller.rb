@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdminCategoriesController < ApplicationController
   def index
     @categories = Category.all
@@ -6,10 +8,10 @@ class AdminCategoriesController < ApplicationController
   def newest
     new = Category.order("created_at").last
     respond_to do |format|
-      msg = {id: new.id, name: new.name, priority: new.priority}
-      format.js {render json: msg}
+      msg = { id: new.id, name: new.name, priority: new.priority }
+      format.js { render json: msg }
       format.html
-      format.json {response json: msg}
+      format.json { response json: msg }
     end
   end
 
@@ -18,11 +20,11 @@ class AdminCategoriesController < ApplicationController
     created.save
     respond_to do |format|
       if created.errors.any?
-        format.js{ render json: {errors: created.errors}, status: :not_acceptable }
+        format.js { render json: { errors: created.errors }, status: :not_acceptable }
       else
-        format.js { render json: created, status: :created}
+        format.js { render json: created, status: :created }
       end
-      format.json {head :created}
+      format.json { head :created }
     end
   end
 
@@ -35,24 +37,28 @@ class AdminCategoriesController < ApplicationController
     end
     respond_to do |format|
       if for_delete.errors.any?
-        format.js{ render json: {errors: for_delete.errors}, status: :not_acceptable }
+        format.js { render json: { errors: for_delete.errors }, status: :not_acceptable }
       else
-        format.js {head :no_content}
+        format.js { head :no_content }
       end
-      format.json {head :no_content}
+      format.json { head :no_content }
     end
   end
 
   def update
-    updated = Category.update(params[:id],{name: params[:name], priority: params[:priority]})
+    updated = Category.update(params[:id], name: params[:name], priority: params[:priority])
     respond_to do |format|
       if updated.errors.any?
-        format.js{ render json: {errors: updated.errors}, status: :not_acceptable }
+        format.js { render json: { errors: updated.errors }, status: :not_acceptable }
       else
-        format.js { render json: updated, status: :ok;}
+        format.js { render json: updated, status: :ok;  }
       end
-      format.json { head :ok;}
+      format.json { head :ok;  }
     end
   end
-end
 
+  def order_priorities
+    Category.order(:priority).each_with_index{|category,index| Category.update(category.id, priority:(index+1))}
+    redirect_to admin_categories_path
+  end
+end

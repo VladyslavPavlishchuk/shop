@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   def show
     order = Order.find_by(user_id: current_user[:id], status: :cart)
@@ -5,7 +7,7 @@ class OrdersController < ApplicationController
       @order = order
       @ordered_products = @products = @order.ordered_products
       @products = @order.ordered_products.map { |ordered_product| ordered_product.product }
-      @discounts = @ordered_products.map{ |ordered_product| ordered_product.discount }
+      @discounts = @ordered_products.map { |ordered_product| ordered_product.discount }
     end
   end
 
@@ -24,7 +26,7 @@ class OrdersController < ApplicationController
                           product_id: params[:product_id],
                           discount_id: Order::CalculateDiscount.(product_id: params[:product_id],
                               user_id: params[:id])["max_discount"],
-                          quontity:1,
+                          quontity: 1,
                           price: Product.find(params[:product_id]).price)
   end
 
@@ -39,5 +41,4 @@ class OrdersController < ApplicationController
       product.update(quontity: params[:quontities][i])}
     redirect_to :root
   end
-
 end

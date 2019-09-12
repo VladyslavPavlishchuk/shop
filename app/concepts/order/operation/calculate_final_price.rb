@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderedProduct::CalculateFinalPrice < Trailblazer::Operation
   step :get_price
 

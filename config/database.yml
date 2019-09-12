@@ -47,6 +47,7 @@ test:
   encoding: utf8
   database: shop_test
   pool: 5
+  host: db
   username: postgres
   password:
 

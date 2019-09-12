@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-   include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -12,21 +14,21 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def store_dir
   #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   # end
-   def store_dir
-     ":rails_root/app/assets/images/#{model.id}"
-   end
+  def store_dir
+    ":rails_root/app/assets/images/#{model.id}"
+  end
 
-   def default_url
-     "/assets/" + [version_name, "default.png"].compact.join('_')
-   end
+  def default_url
+    "/assets/" + [version_name, "default.png"].compact.join("_")
+  end
 
-   def filename
-     "#{secure_token}.#{file.extension}" if original_filename.present?
-   end
+  def filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
 
-   def size_range
-     1..50.megabytes
-   end
+  def size_range
+    1..50.megabytes
+  end
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
@@ -36,7 +38,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-   process resize_to_fit: [400, 400]
+  process resize_to_fit: [400, 400]
 
   version :thumb do
     process resize_to_fit: [80, 80]
@@ -47,7 +49,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :big do
-    process resize_to_fit: [500,500]
+    process resize_to_fit: [500, 500]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -63,8 +65,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
   #
   protected
-     def secure_token
-       var = :"@#{mounted_as}_secure_token"
-       model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
-     end
+    def secure_token
+      var = :"@#{mounted_as}_secure_token"
+      model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
+    end
 end
