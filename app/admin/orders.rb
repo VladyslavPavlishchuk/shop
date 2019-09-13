@@ -18,6 +18,30 @@ ActiveAdmin.register Order do
   #remove Create new buttor
   actions :all, :except => [:new]
 
+  #show tab
+  show do
+    attributes_table do
+      row :user
+      row :status
+    end
+
+    table_for order.products do
+        column :name do |product|
+          product
+        end
+        column "Product price" do |product|
+          product.price
+        end
+        column "Quontity" do |product|
+          product.ordered_products.sum(:quontity)
+        end
+        column "Final price" do |product|
+          product.ordered_products.map{|ordered_product|
+            p OrderedProduct::CalculateFinalPrice.(ordered_product: ordered_product)["final_price"]
+            }.sum
+        end
+    end
+  end
 
   # edit filters
   preserve_default_filters!
@@ -26,7 +50,7 @@ ActiveAdmin.register Order do
     OrderedProduct.all.map{ |ordered| ordered.product}
   }
 
-  #edit page
+  #edit creation
   form do |f|
     f.inputs "Details" do
       f.input :user

@@ -10,7 +10,8 @@ class Product < ApplicationRecord
 
   ransacker :image_filter, formatter: proc{|val|
     if val
-      Product.all.select{|product| product['image'] != nil }.map(&:id)
+      product = Product.all.select{|product| product['image'] != nil }.map(&:id)
+      product.present? ? product : nil
     end
   } do |parent|
     parent.table[:id]

@@ -41,8 +41,8 @@ Rails.application.routes.draw do
   #     passwords: 'users/passwords',
   # }
 
-  # devise_scope :user do
-  #   get 'current' => 'users/sessions#current'
-  # end
+  devise_scope :user do
+    get 'current' => 'users/sessions#current'
+  end
 
 end
